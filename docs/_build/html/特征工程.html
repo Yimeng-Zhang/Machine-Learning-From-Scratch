@@ -1,0 +1,420 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="zh-CN" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="zh-CN" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>特征工程 Feature Engineering &mdash; Eamon&#39;s Machine Learning 0.1 文档</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="索引" href="genindex.html" />
+    <link rel="search" title="搜索" href="search.html" />
+    <link rel="prev" title="特征缩放 Feature Scaling TODO" href="特征缩放.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Eamon's Machine Learning
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">数据处理 Data Processing</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="什么是变量.html">什么是变量 Variable</a></li>
+<li class="toctree-l1"><a class="reference internal" href="特征清洗.html">特征清洗 Feature Cleaning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="特征缩放.html">特征缩放 Feature Scaling TODO</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">特征工程 Feature Engineering</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#discretization">1. 离散化 Discretization</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id1">1.1 离散化的方法</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id2">1.1.1 等频分箱</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id3">1.1.2 等距分箱</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id4">1.1.3 基于业务经验的分箱</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id5">1.1.4 基于决策树分箱</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id6">1.1.5 更多方法</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#transformation">2. 特征转换 Transformation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id7">2.1 高斯变换</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id8">2.2 更多方法</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#feature-crossing">3. 特征衍生/组合 Feature Crossing</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id9">3.1 缺失变量衍生</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id10">3.2 简单统计特征</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id11">3.3 维度合并</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id12">3.4 占比类</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id13">3.5 特征转化</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id14">3.5.1 单个特征</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id15">3.5.2 多个特征</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id16">3.6 交叉验证类</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id17">3.7 特征学习</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Eamon's Machine Learning</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>特征工程 Feature Engineering</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/特征工程.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="feature-engineering">
+<h1>特征工程 Feature Engineering<a class="headerlink" href="#feature-engineering" title="永久链接至标题">¶</a></h1>
+<div class="contents local topic" id="contents">
+<ul class="simple">
+<li><a class="reference internal" href="#discretization" id="id18">1. 离散化 Discretization</a><ul>
+<li><a class="reference internal" href="#id1" id="id19">1.1 离散化的方法</a><ul>
+<li><a class="reference internal" href="#id2" id="id20">1.1.1 等频分箱</a></li>
+<li><a class="reference internal" href="#id3" id="id21">1.1.2 等距分箱</a></li>
+<li><a class="reference internal" href="#id4" id="id22">1.1.3 基于业务经验的分箱</a></li>
+<li><a class="reference internal" href="#id5" id="id23">1.1.4 基于决策树分箱</a></li>
+<li><a class="reference internal" href="#id6" id="id24">1.1.5 更多方法</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#transformation" id="id25">2. 特征转换 Transformation</a><ul>
+<li><a class="reference internal" href="#id7" id="id26">2.1 高斯变换</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id8" id="id27">2.2 更多方法</a></li>
+<li><a class="reference internal" href="#feature-crossing" id="id28">3. 特征衍生/组合 Feature Crossing</a><ul>
+<li><a class="reference internal" href="#id9" id="id29">3.1 缺失变量衍生</a></li>
+<li><a class="reference internal" href="#id10" id="id30">3.2 简单统计特征</a></li>
+<li><a class="reference internal" href="#id11" id="id31">3.3 维度合并</a></li>
+<li><a class="reference internal" href="#id12" id="id32">3.4 占比类</a></li>
+<li><a class="reference internal" href="#id13" id="id33">3.5 特征转化</a><ul>
+<li><a class="reference internal" href="#id14" id="id34">3.5.1 单个特征</a></li>
+<li><a class="reference internal" href="#id15" id="id35">3.5.2 多个特征</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id16" id="id36">3.6 交叉验证类</a></li>
+<li><a class="reference internal" href="#id17" id="id37">3.7 特征学习</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="discretization">
+<h2><a class="toc-backref" href="#id18">1. 离散化 Discretization</a><a class="headerlink" href="#discretization" title="永久链接至标题">¶</a></h2>
+<p>离散化是指通过创建一组覆盖变量取值范围的区间，将连续变量的值转化到几个离散的区间的过程。</p>
+<p>离散化的目地是帮助处理极端值和偏态分布的变量。它一方面可以将极端值分到某个区间内，使得它和其他分布末端的值处于同一个区间，从而避免极端值的影响。另一方面，某些离散化的方法可以将偏态分布变量的值分到一系列具有相同数量观测值的区间内，从而改变分布。</p>
+<p><a class="reference external" href="https://www.zhihu.com/question/31989952/answer/54184582">https://www.zhihu.com/question/31989952/answer/54184582</a></p>
+<div class="section" id="id1">
+<h3><a class="toc-backref" href="#id19">1.1 离散化的方法</a><a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h3>
+<p>离散化方法又叫“分箱”（binning），每一个bin即表示一个区间。离散化方法可以分为两大类：<strong>有监督方法</strong> 和 <strong>无监督方法</strong>， 区别是前者利用到了目标变量的信息来创建区间。 无论用哪种方法进行了离散化后，我们一般还会用类别变量的处理方法做进一步变换，例如 WoE转换或Ordinal Numbering Encoding。</p>
+<p><strong>无监督离散化方法</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li>等频分箱 Equal frequency binning</li>
+<li>等距分箱 Equal width binning</li>
+<li>基于业务经验分箱</li>
+</ul>
+</div></blockquote>
+<dl class="docutils">
+<dt><strong>有监督离散化方法</strong></dt>
+<dd><ul class="first last simple">
+<li>基于决策树分箱 Discretisation using decision trees</li>
+</ul>
+</dd>
+</dl>
+<div class="section" id="id2">
+<h4><a class="toc-backref" href="#id20">1.1.1 等频分箱</a><a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h4>
+<p>等频分箱将变量的所有可能取值分为 N 个区间内，每个区间具有相同数量的样本，这对于处理高度偏态分布的变量很有用。通常的做法是把连续变量划分到10个以下的区间内，利用百分位数来决定区间的上下界限。</p>
+<p>这种方法的缺点是可能扰乱原始变量和目标变量的关系（考虑极端情况：目标变量是高度不平衡的，该自变量的极端取值与目标变量完全对应），使得转换后变量的预测能力反而下降。 另外，也可能使相同取值的两个样本被分在不同的两个相邻区间内，这种情况需要另行处理。</p>
+</div>
+<div class="section" id="id3">
+<h4><a class="toc-backref" href="#id21">1.1.2 等距分箱</a><a class="headerlink" href="#id3" title="永久链接至标题">¶</a></h4>
+<p>等距分箱将变量的所有可能取值分为 N 个区间内，每个区间的宽度相同，这个宽度由该变量的取值范围和 N 共同决定。</p>
+<p>Width = (max_value-min_value) / N</p>
+<p>通常来说 N 不超过10。等距分箱的时候容易出现不均匀的现象，它强调区间的宽度，不考虑每段内样本的个数，对异常点比较敏感，容易造成大部分分段内只有少数甚至0个样本的情况。如果变量是偏态的，该方法不适用。</p>
+</div>
+<div class="section" id="id4">
+<h4><a class="toc-backref" href="#id22">1.1.3 基于业务经验的分箱</a><a class="headerlink" href="#id4" title="永久链接至标题">¶</a></h4>
+<p>有些情况下，基于业务经验决定如何分箱会更 make sense。例如，对于年龄，我们可以根据实际分析的需求分为 0-18（未成年），18-24（青年）...等区段。</p>
+</div>
+<div class="section" id="id5">
+<h4><a class="toc-backref" href="#id23">1.1.4 基于决策树分箱</a><a class="headerlink" href="#id5" title="永久链接至标题">¶</a></h4>
+<p>决策树的直观理解就是一堆 if else，所以这种模型天生具有对连续型特征切分的能力，用于特征离散化也是合情合理的。实际操作中，我们可以单独连续特征和目标值训练一个决策树模型，然后把训练获得的模型内的特征分割点作为离散化的离散点。</p>
+</div>
+<div class="section" id="id6">
+<h4><a class="toc-backref" href="#id24">1.1.5 更多方法</a><a class="headerlink" href="#id6" title="永久链接至标题">¶</a></h4>
+<p>TODO</p>
+</div>
+</div>
+</div>
+<div class="section" id="transformation">
+<h2><a class="toc-backref" href="#id25">2. 特征转换 Transformation</a><a class="headerlink" href="#transformation" title="永久链接至标题">¶</a></h2>
+<div class="section" id="id7">
+<h3><a class="toc-backref" href="#id26">2.1 高斯变换</a><a class="headerlink" href="#id7" title="永久链接至标题">¶</a></h3>
+<p>一些机器学习的算法例如线性回归和逻辑回归假定变量必须是正态分布的，也有一些算法虽然不要求必须正态分布，但也会获益于接近正态分布的变量形态。如果原始变量不是正态分布的，可以通过一些数学变换让变量接近正态。包括：</p>
+<blockquote>
+<div><ul class="simple">
+<li>倒数变换</li>
+<li>平方根变换</li>
+<li>指数变换</li>
+<li>对数变换</li>
+<li>Boxcox 变换</li>
+</ul>
+</div></blockquote>
+<p>具体的过程暂略。</p>
+</div>
+</div>
+<div class="section" id="id8">
+<h2><a class="toc-backref" href="#id27">2.2 更多方法</a><a class="headerlink" href="#id8" title="永久链接至标题">¶</a></h2>
+<p>TODO</p>
+</div>
+<div class="section" id="feature-crossing">
+<h2><a class="toc-backref" href="#id28">3. 特征衍生/组合 Feature Crossing</a><a class="headerlink" href="#feature-crossing" title="永久链接至标题">¶</a></h2>
+<p>数据和特征决定了机器学习的上限，而模型和算法只是逼近这个上限而已。获得更多高质量的变量是特征工程的重中之重。本节介绍几种生成衍生变量的方法。</p>
+<div class="section" id="id9">
+<h3><a class="toc-backref" href="#id29">3.1 缺失变量衍生</a><a class="headerlink" href="#id9" title="永久链接至标题">¶</a></h3>
+<p>在“特征清洗”章节中已经提过，对于含有缺失值的变量，可以创造一个新变量标注该变量是否是缺失，捕捉“缺失”这一层信息。当然，在创建这类衍生变量的时候一定要搞清楚变量缺失的机制。</p>
+</div>
+<div class="section" id="id10">
+<h3><a class="toc-backref" href="#id30">3.2 简单统计特征</a><a class="headerlink" href="#id10" title="永久链接至标题">¶</a></h3>
+<p>创建原始变量的简单统计类特征。简单统计量比如：</p>
+<blockquote>
+<div><ul class="simple">
+<li>count</li>
+<li>average</li>
+<li>median</li>
+<li>stddev</li>
+<li>max/min</li>
+<li>sum</li>
+</ul>
+</div></blockquote>
+<p>以通话记录数据为例，通过这个角度创建的特征可以有：
+通话次数、呼入呼出次数、平均单次通话时长、月均通话时长、最大通话时长、总时长等。</p>
+</div>
+<div class="section" id="id11">
+<h3><a class="toc-backref" href="#id31">3.3 维度合并</a><a class="headerlink" href="#id11" title="永久链接至标题">¶</a></h3>
+<p>了解了一些简单统计特征的生成规则后，我们就可以将这些特征进行合并。还是以通话记录为例，我们可以根据通话发生时间将所有通话分为“白天/夜间”，结合之前已有简单统计量生成更多特征，例如；夜间通话次数。或者根据通话的性质，如“外卖/银行/打车/快递”等分类后，新建特征：银行类通话次数。更常见的是与时间维度进行合并，如：最近一个月的通话次数，最近半年的平均通话时长。</p>
+</div>
+<div class="section" id="id12">
+<h3><a class="toc-backref" href="#id32">3.4 占比类</a><a class="headerlink" href="#id12" title="永久链接至标题">¶</a></h3>
+<p>占比类特征，例如，银行类通话次数占全部通话次数占比，10分钟以上的通话次数占全部通话次数占比，通话频次最多的号码次数占全部通话次数占比，夜间通话次数占比，诸如此类。</p>
+</div>
+<div class="section" id="id13">
+<h3><a class="toc-backref" href="#id33">3.5 特征转化</a><a class="headerlink" href="#id13" title="永久链接至标题">¶</a></h3>
+<div class="section" id="id14">
+<h4><a class="toc-backref" href="#id34">3.5.1 单个特征</a><a class="headerlink" href="#id14" title="永久链接至标题">¶</a></h4>
+<p>对单个特征做各类转化生成新特征，例如指数变换、对数变换、开平方根、开N次幂等。这类变换可能可以提升最后的准确率，但生成的新变量往往没有可解释性。</p>
+</div>
+<div class="section" id="id15">
+<h4><a class="toc-backref" href="#id35">3.5.2 多个特征</a><a class="headerlink" href="#id15" title="永久链接至标题">¶</a></h4>
+<p>两个以上特征之间的</p>
+<blockquote>
+<div><ul class="simple">
+<li>环比/同比特征。如，过去1个月通话次数与过去2个月通话次数的比值。</li>
+<li>多项式特征（数值型变量）。基于原始变量生成高阶的交互项，如 sklearn的 PolynomialFeatures，比如 (X1, X2, X3) 3个原始特征的2阶多项式特征是  (1, X1*X2, X1*X3, X2*X3, X1*X2*X3)。</li>
+<li></li>
+</ul>
+</div></blockquote>
+</div>
+</div>
+<div class="section" id="id16">
+<h3><a class="toc-backref" href="#id36">3.6 交叉验证类</a><a class="headerlink" href="#id16" title="永久链接至标题">¶</a></h3>
+<p>指两个变量是否一致，如用户填写的收入水平与实际流水中计算的收入水平。</p>
+</div>
+<div class="section" id="id17">
+<h3><a class="toc-backref" href="#id37">3.7 特征学习</a><a class="headerlink" href="#id17" title="永久链接至标题">¶</a></h3>
+<p>用深度学习方法自动从数据中学习得到有用的特征，跳过人工生成特征的步骤。这个方法需要大量数据，适合图像、语音类项目。</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="特征缩放.html" class="btn btn-neutral" title="特征缩放 Feature Scaling TODO" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Eamon_Zhang.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'0.1',
+            LANGUAGE:'zh_CN',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="_static/translations.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
