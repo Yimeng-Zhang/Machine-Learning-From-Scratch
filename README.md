@@ -4,7 +4,7 @@
 
 每天30分钟，系统梳理机器学习的各个知识点，概念+原理+代码。
 
-[项目地址](https://readthedocs.org/projects/machine-learning-from-scratch/)
+[项目地址](https://machine-learning-from-scratch.readthedocs.io/zh_CN/latest/)
 
 
 
