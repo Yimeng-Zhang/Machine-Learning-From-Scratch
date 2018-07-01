@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>特征清洗 Feature Cleaning &mdash; Eamon&#39;s Machine Learning 0.1 文档</title>
+  <title>特征清洗 Feature Cleaning &mdash; Machine Learning From Scratch 0.1 文档</title>
   
 
   
@@ -29,8 +29,8 @@
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="index" title="索引" href="genindex.html" />
     <link rel="search" title="搜索" href="search.html" />
-    <link rel="next" title="特征缩放 Feature Scaling TODO" href="特征缩放.html" />
-    <link rel="prev" title="什么是变量 Variable" href="什么是变量.html" /> 
+    <link rel="next" title="特征缩放 Feature Scaling" href="特征缩放.html" />
+    <link rel="prev" title="数据探索 Data Exploration" href="数据探索.html" /> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -49,7 +49,7 @@
           
 
           
-            <a href="index.html" class="icon icon-home"> Eamon's Machine Learning
+            <a href="index.html" class="icon icon-home"> Machine Learning From Scratch
           
 
           
@@ -85,7 +85,7 @@
             
               <p class="caption"><span class="caption-text">数据处理 Data Processing</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="什么是变量.html">什么是变量 Variable</a></li>
+<li class="toctree-l1"><a class="reference internal" href="数据探索.html">数据探索 Data Exploration</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">特征清洗 Feature Cleaning</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#missing-data">1. 缺失值 Missing Data</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#missing-data-mechanisms">1.1 缺失机制 Missing Data Mechanisms</a><ul>
@@ -97,8 +97,8 @@
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#how-to-handle-missing-data">1.2 如何处理缺失值 How to Handle Missing Data</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#list-wise-deletion">1.2.1 List-wise deletion</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#mean-and-median-imputation">1.2.2 Mean and median imputation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#list-wise-deletion">1.2.1 List-wise Deletion</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mean-and-median-imputation">1.2.2 Mean and Median Imputation</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#adding-a-variable-to-capture-na">1.2.3 Adding a Variable to Capture NA</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#end-of-the-distribution-imputation">1.2.4 End of the Distribution Imputation</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#arbitrary-value-imputation">1.2.5 Arbitrary Value Imputation</a></li>
@@ -114,13 +114,14 @@
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#id5">2.2 如何处理异常值</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#mean-median-imputation-or-trimming">2.2.1 Mean/median imputation or trimming</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#top-coding-bottom-coding-and-zero-coding">2.2.2 Top-coding, bottom-coding and zero-coding</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mean-median-imputation-or-trimming">2.2.1 Mean/Median Imputation or Trimming</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#top-coding-bottom-coding-and-zero-coding">2.2.2 Top-coding, Bottom-coding and Zero-coding</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#discretization">2.2.3 Discretization</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#labels">3. 类别变量的标签 Labels</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#high-cardinality-of-variables">3. 类别变量标签过多 High Cardinality of Variables</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#id6">3.1 类别变量标签过多带来的问题</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#id7">3.2 处理方法</a></li>
 </ul>
@@ -130,27 +131,46 @@
 <li class="toctree-l3"><a class="reference internal" href="#id9">4.2 处理方法</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#id10">5. 类别型变量的编码</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id10">5. 类别变量的编码</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#one-hot-encoding">5.1 One Hot Encoding</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#kk-1">5.1.1 何时使用K或K-1个二值变量</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#id11">5.1.2 如何处理类别变量标签过多的情况</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#ordinal-numbering-encoding">5.2 Ordinal Numbering Encoding</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#target-guided-ordinal-encoding">5.3 Target guided ordinal encoding</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#ordering-labels-according-to-the-target">5.3.1 Ordering labels according to the target</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#target-guided-ordinal-encoding">5.3 Target Guided Ordinal Encoding</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#ordering-labels-according-to-the-target">5.3.1 Ordering Labels According to the Target</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#mean-encoding">5.3.2 Mean Encoding</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#probability-ratio-encoding">5.3.3 Probability ratio encoding</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#weight-of-evidence-woe-todo">5.3.4 Weight of evidence (WoE) TODO</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#probability-ratio-encoding">5.3.3 Probability Ratio Encoding</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#weight-of-evidence-woe">5.3.4 Weight of Evidence (WoE)</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#id12">6. 机器学习算法总结</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id12">6. 机器学习算法与特征清洗小结</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="特征缩放.html">特征缩放 Feature Scaling TODO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="特征缩放.html">特征缩放 Feature Scaling</a></li>
 <li class="toctree-l1"><a class="reference internal" href="特征工程.html">特征工程 Feature Engineering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="特征选择.html">特征选择 (TODO)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="特征学习.html">特征学习 (TODO)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="数据集构造.html">数据集构造 (TODO)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="特征监控.html">特征监控 (TODO)</a></li>
+</ul>
+<p class="caption"><span class="caption-text">数学基础 Math</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="微积分.html">微积分 Calculus (TODO)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="线性代数.html">线性代数 Linear Algebra (TODO)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="概率论.html">概率论 Probability (TODO)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="统计.html">统计 Stats (TODO)</a></li>
+</ul>
+<p class="caption"><span class="caption-text">机器学习算法 Algorithm</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="模型调优.html">模型调优 (TODO)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="优化算法.html">优化算法 (TODO)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="模型评估.html">模型评估 (TODO)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="正则化.html">正则化 (TODO)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="损失函数.html">损失函数 Loss Function (TODO)</a></li>
 </ul>
 
             
@@ -165,7 +185,7 @@
       <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="index.html">Eamon's Machine Learning</a>
+          <a href="index.html">Machine Learning From Scratch</a>
         
       </nav>
 
@@ -229,8 +249,8 @@
 </ul>
 </li>
 <li><a class="reference internal" href="#how-to-handle-missing-data" id="id28">1.2 如何处理缺失值 How to Handle Missing Data</a><ul>
-<li><a class="reference internal" href="#list-wise-deletion" id="id29">1.2.1 List-wise deletion</a></li>
-<li><a class="reference internal" href="#mean-and-median-imputation" id="id30">1.2.2 Mean and median imputation</a></li>
+<li><a class="reference internal" href="#list-wise-deletion" id="id29">1.2.1 List-wise Deletion</a></li>
+<li><a class="reference internal" href="#mean-and-median-imputation" id="id30">1.2.2 Mean and Median Imputation</a></li>
 <li><a class="reference internal" href="#adding-a-variable-to-capture-na" id="id31">1.2.3 Adding a Variable to Capture NA</a></li>
 <li><a class="reference internal" href="#end-of-the-distribution-imputation" id="id32">1.2.4 End of the Distribution Imputation</a></li>
 <li><a class="reference internal" href="#arbitrary-value-imputation" id="id33">1.2.5 Arbitrary Value Imputation</a></li>
@@ -246,43 +266,45 @@
 </ul>
 </li>
 <li><a class="reference internal" href="#id5" id="id39">2.2 如何处理异常值</a><ul>
-<li><a class="reference internal" href="#mean-median-imputation-or-trimming" id="id40">2.2.1 Mean/median imputation or trimming</a></li>
-<li><a class="reference internal" href="#top-coding-bottom-coding-and-zero-coding" id="id41">2.2.2 Top-coding, bottom-coding and zero-coding</a></li>
+<li><a class="reference internal" href="#mean-median-imputation-or-trimming" id="id40">2.2.1 Mean/Median Imputation or Trimming</a></li>
+<li><a class="reference internal" href="#top-coding-bottom-coding-and-zero-coding" id="id41">2.2.2 Top-coding, Bottom-coding and Zero-coding</a></li>
+<li><a class="reference internal" href="#discretization" id="id42">2.2.3 Discretization</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a class="reference internal" href="#labels" id="id42">3. 类别变量的标签 Labels</a><ul>
-<li><a class="reference internal" href="#id6" id="id43">3.1 类别变量标签过多带来的问题</a></li>
-<li><a class="reference internal" href="#id7" id="id44">3.2 处理方法</a></li>
+<li><a class="reference internal" href="#high-cardinality-of-variables" id="id43">3. 类别变量标签过多 High Cardinality of Variables</a><ul>
+<li><a class="reference internal" href="#id6" id="id44">3.1 类别变量标签过多带来的问题</a></li>
+<li><a class="reference internal" href="#id7" id="id45">3.2 处理方法</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#rare-values" id="id45">4. 类别变量的罕见值 Rare values</a><ul>
-<li><a class="reference internal" href="#id8" id="id46">4.1 类别变量罕见值带来的问题</a></li>
-<li><a class="reference internal" href="#id9" id="id47">4.2 处理方法</a></li>
+<li><a class="reference internal" href="#rare-values" id="id46">4. 类别变量的罕见值 Rare values</a><ul>
+<li><a class="reference internal" href="#id8" id="id47">4.1 类别变量罕见值带来的问题</a></li>
+<li><a class="reference internal" href="#id9" id="id48">4.2 处理方法</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#id10" id="id48">5. 类别型变量的编码</a><ul>
-<li><a class="reference internal" href="#one-hot-encoding" id="id49">5.1 One Hot Encoding</a><ul>
-<li><a class="reference internal" href="#kk-1" id="id50">5.1.1 何时使用K或K-1个二值变量</a></li>
-<li><a class="reference internal" href="#id11" id="id51">5.1.2 如何处理类别变量标签过多的情况</a></li>
+<li><a class="reference internal" href="#id10" id="id49">5. 类别变量的编码</a><ul>
+<li><a class="reference internal" href="#one-hot-encoding" id="id50">5.1 One Hot Encoding</a><ul>
+<li><a class="reference internal" href="#kk-1" id="id51">5.1.1 何时使用K或K-1个二值变量</a></li>
+<li><a class="reference internal" href="#id11" id="id52">5.1.2 如何处理类别变量标签过多的情况</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#ordinal-numbering-encoding" id="id52">5.2 Ordinal Numbering Encoding</a></li>
-<li><a class="reference internal" href="#target-guided-ordinal-encoding" id="id53">5.3 Target guided ordinal encoding</a><ul>
-<li><a class="reference internal" href="#ordering-labels-according-to-the-target" id="id54">5.3.1 Ordering labels according to the target</a></li>
-<li><a class="reference internal" href="#mean-encoding" id="id55">5.3.2 Mean Encoding</a></li>
-<li><a class="reference internal" href="#probability-ratio-encoding" id="id56">5.3.3 Probability ratio encoding</a></li>
-<li><a class="reference internal" href="#weight-of-evidence-woe-todo" id="id57">5.3.4 Weight of evidence (WoE) TODO</a></li>
+<li><a class="reference internal" href="#ordinal-numbering-encoding" id="id53">5.2 Ordinal Numbering Encoding</a></li>
+<li><a class="reference internal" href="#target-guided-ordinal-encoding" id="id54">5.3 Target Guided Ordinal Encoding</a><ul>
+<li><a class="reference internal" href="#ordering-labels-according-to-the-target" id="id55">5.3.1 Ordering Labels According to the Target</a></li>
+<li><a class="reference internal" href="#mean-encoding" id="id56">5.3.2 Mean Encoding</a></li>
+<li><a class="reference internal" href="#probability-ratio-encoding" id="id57">5.3.3 Probability Ratio Encoding</a></li>
+<li><a class="reference internal" href="#weight-of-evidence-woe" id="id58">5.3.4 Weight of Evidence (WoE)</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a class="reference internal" href="#id12" id="id58">6. 机器学习算法总结</a></li>
+<li><a class="reference internal" href="#id12" id="id59">6. 机器学习算法与特征清洗小结</a></li>
 </ul>
 </div>
 <div class="section" id="missing-data">
 <h2><a class="toc-backref" href="#id21">1. 缺失值 Missing Data</a><a class="headerlink" href="#missing-data" title="永久链接至标题">¶</a></h2>
+<p>本章节代码可在  <a class="reference external" href="https://github.com/13918078239/Machine-Learning-From-Scratch/blob/master/codes/MissingValue.ipynb">这里</a> 找到。</p>
 <p>缺失值指的是数据集中数据不存在的情况。
 产生缺失值的原因有很多，例如：</p>
 <blockquote>
@@ -302,7 +324,7 @@
 <h4><a class="toc-backref" href="#id24">1.1.2 Missing at Random</a><a class="headerlink" href="#missing-at-random" title="永久链接至标题">¶</a></h4>
 <p>随机缺失，指的是某变量出现缺失值的可能性只与数据集中某些其他已知变量有关，而与该变量自身无关。</p>
 <p>比如说，男人比女人更有可能公开体重，这时体重这个变量的缺失对于男性和女性而言都是随机缺失的，但因为女性更倾向于保留体重信息，在女性群体中会有更大的缺失比例。</p>
-<p>随机缺失的情况下，丢弃含有缺失值的样本也是可以接受的，只要我们的模型将所有与缺失相关的变量纳入在模型中。</p>
+<p>随机缺失的情况下，丢弃含有缺失值的样本也是可以接受的，只要模型将所有与缺失相关的变量纳入在模型中。</p>
 </div>
 <div class="section" id="missing-depends-on-unobserved-predictors">
 <h4><a class="toc-backref" href="#id25">1.1.3 Missing Depends on Unobserved Predictors</a><a class="headerlink" href="#missing-depends-on-unobserved-predictors" title="永久链接至标题">¶</a></h4>
@@ -325,8 +347,8 @@
 <div class="section" id="how-to-handle-missing-data">
 <h3><a class="toc-backref" href="#id28">1.2 如何处理缺失值 How to Handle Missing Data</a><a class="headerlink" href="#how-to-handle-missing-data" title="永久链接至标题">¶</a></h3>
 <div class="section" id="list-wise-deletion">
-<h4><a class="toc-backref" href="#id29">1.2.1 List-wise deletion</a><a class="headerlink" href="#list-wise-deletion" title="永久链接至标题">¶</a></h4>
-<p>又称为 Complete-case analysis，即将所有含有缺失值的样本/记录直接丢弃。</p>
+<h4><a class="toc-backref" href="#id29">1.2.1 List-wise Deletion</a><a class="headerlink" href="#list-wise-deletion" title="永久链接至标题">¶</a></h4>
+<p>又称为 Complete-Case Analysis，即将所有含有缺失值的样本/记录直接丢弃。</p>
 <p><strong>假设</strong></p>
 <p>该方法的前提是数据是完全随机缺失的。在这种前提下，丢弃所有带缺失值的样本等同于随机选择一部分数据子集。</p>
 <dl class="docutils">
@@ -345,7 +367,7 @@
 </dl>
 </div>
 <div class="section" id="mean-and-median-imputation">
-<h4><a class="toc-backref" href="#id30">1.2.2 Mean and median imputation</a><a class="headerlink" href="#mean-and-median-imputation" title="永久链接至标题">¶</a></h4>
+<h4><a class="toc-backref" href="#id30">1.2.2 Mean and Median Imputation</a><a class="headerlink" href="#mean-and-median-imputation" title="永久链接至标题">¶</a></h4>
 <p>均值和中位数填充。填充指的是用某种统计手段来填补缺失的部分，目地是产生一个完整的数据集。均值和中位数填充即用缺失变量的平均数（如果变量呈高斯分布）或中位数（如果变量呈偏态分布）来填充缺失部分。</p>
 <p>如果缺失的是类别型变量，则可以用众数（该变量出现频次最多值）来填充，原理一致。</p>
 <p><strong>假设</strong></p>
@@ -359,12 +381,12 @@
 </dd>
 <dt><strong>缺点</strong></dt>
 <dd><ul class="first last simple">
-<li>会对原始的方差造成变形</li>
+<li>使原始变量的方差变形</li>
 <li>被填充的变量与其他变量的协方差也变形了，因为忽略了变量之间的关系</li>
 </ul>
 </dd>
 </dl>
-<p>当使用这种方法时，如果缺失的比例过大，则势必会造成该变量的方差变小（因为我们只用一个值去填充所有缺失部分）。同样的原因，该变量与其他变量的协方差也会变形。这是最常用的处理缺失值的方法。</p>
+<p>当使用这种方法时，如果缺失的比例过大，则势必会造成该变量的方差变小（因为我们只用一个值去填充所有缺失部分）。同样的原因，该变量与其他变量的协方差也会变形。</p>
 </div>
 <div class="section" id="adding-a-variable-to-capture-na">
 <h4><a class="toc-backref" href="#id31">1.2.3 Adding a Variable to Capture NA</a><a class="headerlink" href="#adding-a-variable-to-capture-na" title="永久链接至标题">¶</a></h4>
@@ -381,7 +403,7 @@
 </dd>
 <dt><strong>缺点</strong></dt>
 <dd><ul class="first last simple">
-<li>使特征空间放大</li>
+<li>使特征空间扩大</li>
 </ul>
 </dd>
 </dl>
@@ -463,6 +485,7 @@
 </div></blockquote>
 <p>异常值是否需要处理，和具体业务场景紧密关联。如果异常值是由于一些错误因素导致的，比如测量错误，则明显应该剔除。但也有很多时候，异常值的产生本身就是很有用的信息，比如一笔异常的交易很可能是欺诈事件。</p>
 <p>均值、方差等统计量都会受到异常值的干扰。很多机器学习算法也会对异常值敏感，使得算法效果下降。因此有必要在特征清洗过程中对异常值做处理。</p>
+<p>本章节代码可在  <a class="reference external" href="https://github.com/13918078239/Machine-Learning-From-Scratch/blob/master/codes/Outlier.ipynb">这里</a> 找到。</p>
 <div class="section" id="outlier-detection">
 <h3><a class="toc-backref" href="#id37">2.1 异常值检测 Outlier Detection</a><a class="headerlink" href="#outlier-detection" title="永久链接至标题">¶</a></h3>
 <p>异常值检测的方法有很多。事实上异常检测是机器学习中的一个单独的板块，涉及相当多的内容。关于异常值检测，可以参考 Charu的《Outlier Analysis》http://charuaggarwal.net/outlierbook.pdf</p>
@@ -478,50 +501,63 @@
 <p>上界 = 75th分位数 + （IQR * 1.5）</p>
 <p>下界 = 75th分位数 - （IQR * 1.5）</p>
 <p>视具体数据情况，IQR乘以的倍数可以适当放大或缩小。</p>
-<p><strong>优点</strong>
-两种方法都不受极端值的影响。</p>
-<p><strong>缺点</strong>
-如果数据是严重偏态分布的，则两种方法都不适用。第一种方法只适用于高斯分布的数据，箱线图法会使得大量样本都被视作异常。</p>
+<dl class="docutils">
+<dt><strong>优点</strong></dt>
+<dd><ul class="first last simple">
+<li>两种方法都不受极端值的影响。</li>
+</ul>
+</dd>
+<dt><strong>缺点</strong></dt>
+<dd><ul class="first last simple">
+<li>如果数据是严重偏态分布的，则两种方法都不适用。第一种方法只适用于高斯分布的数据，箱线图法会使得大量样本都被视作异常。</li>
+</ul>
+</dd>
+</dl>
 </div>
 </div>
 <div class="section" id="id5">
 <h3><a class="toc-backref" href="#id39">2.2 如何处理异常值</a><a class="headerlink" href="#id5" title="永久链接至标题">¶</a></h3>
-<p>根据异常值产生的原因，我们可以有以下几种处理方法。</p>
+<p>根据异常值产生的机制，我们可以有以下几种处理方法。</p>
 <div class="section" id="mean-median-imputation-or-trimming">
-<h4><a class="toc-backref" href="#id40">2.2.1 Mean/median imputation or trimming</a><a class="headerlink" href="#mean-median-imputation-or-trimming" title="永久链接至标题">¶</a></h4>
+<h4><a class="toc-backref" href="#id40">2.2.1 Mean/Median Imputation or Trimming</a><a class="headerlink" href="#mean-median-imputation-or-trimming" title="永久链接至标题">¶</a></h4>
 <p>与处理缺失值的逻辑类似，如果异常值的出现是完全随机的，则可以直接丢弃记录或均值填充。</p>
 </div>
 <div class="section" id="top-coding-bottom-coding-and-zero-coding">
-<h4><a class="toc-backref" href="#id41">2.2.2 Top-coding, bottom-coding and zero-coding</a><a class="headerlink" href="#top-coding-bottom-coding-and-zero-coding" title="永久链接至标题">¶</a></h4>
+<h4><a class="toc-backref" href="#id41">2.2.2 Top-coding, Bottom-coding and Zero-coding</a><a class="headerlink" href="#top-coding-bottom-coding-and-zero-coding" title="永久链接至标题">¶</a></h4>
 <p>Top-coding 盖帽法，对变量的分布设置一个人为的最大值，即将任何超过最大值的点替换为该最大值。</p>
-<p>Bottom-coding &amp; zero-coding 与 top-coding类似，设置一个最小值，低于该值的点替换为该最小值或0。</p>
+<p>Bottom-coding &amp; zero-coding 与 top-coding 类似，设置一个最小值，低于该值的点替换为该最小值或0。</p>
+</div>
+<div class="section" id="discretization">
+<h4><a class="toc-backref" href="#id42">2.2.3 Discretization</a><a class="headerlink" href="#discretization" title="永久链接至标题">¶</a></h4>
+<p>将该变量离散化处理。具体见章节 离散化。</p>
 </div>
 </div>
 </div>
-<div class="section" id="labels">
-<h2><a class="toc-backref" href="#id42">3. 类别变量的标签 Labels</a><a class="headerlink" href="#labels" title="永久链接至标题">¶</a></h2>
+<div class="section" id="high-cardinality-of-variables">
+<h2><a class="toc-backref" href="#id43">3. 类别变量标签过多 High Cardinality of Variables</a><a class="headerlink" href="#high-cardinality-of-variables" title="永久链接至标题">¶</a></h2>
 <p>类别变量的取值是从一组固定的类中取的，这个取值也叫做标签。例如，性别的标签可以是“男”或“女”。类别变量标签的数量可多可少，如果这个数量过多，可能会产生问题。</p>
 <div class="section" id="id6">
-<h3><a class="toc-backref" href="#id43">3.1 类别变量标签过多带来的问题</a><a class="headerlink" href="#id6" title="永久链接至标题">¶</a></h3>
+<h3><a class="toc-backref" href="#id44">3.1 类别变量标签过多带来的问题</a><a class="headerlink" href="#id6" title="永久链接至标题">¶</a></h3>
 <blockquote>
 <div><ul class="simple">
-<li>相对于标签较少的变量，标签过多的变量倾向于主导模型，特别是基于树的模型</li>
+<li>相对于标签较少的变量，标签过多的变量倾向于主导模型，特别是基于树的模型 (Why?) -TODO</li>
 <li>标签过多的变量可能引入噪音，使得模型容易过拟合</li>
 <li>可能发生这样的情况：某些标签只在训练集中有，测试集中无，使得模型过拟合</li>
-<li>同时，也可能发生某些标签只在测试集中有，训练集中无的情况，使得模型无法预测</li>
+<li>同理，也可能发生某些标签只在测试集中有，训练集中无的情况，使得模型无法对测试集预测</li>
 </ul>
 </div></blockquote>
 </div>
 <div class="section" id="id7">
-<h3><a class="toc-backref" href="#id44">3.2 处理方法</a><a class="headerlink" href="#id7" title="永久链接至标题">¶</a></h3>
+<h3><a class="toc-backref" href="#id45">3.2 处理方法</a><a class="headerlink" href="#id7" title="永久链接至标题">¶</a></h3>
 <p>对于这类问题，通常的处理方法是根据业务经验将某些标签合并在一起，从而达到减少标签数量的目地。</p>
+<p>另外，也可以用一般的类别变量编码的方法，例如将占比小于一定比例的少数标签合并成一个类别，达到减少标签的目地。</p>
 </div>
 </div>
 <div class="section" id="rare-values">
-<h2><a class="toc-backref" href="#id45">4. 类别变量的罕见值 Rare values</a><a class="headerlink" href="#rare-values" title="永久链接至标题">¶</a></h2>
+<h2><a class="toc-backref" href="#id46">4. 类别变量的罕见值 Rare values</a><a class="headerlink" href="#rare-values" title="永久链接至标题">¶</a></h2>
 <p>如果一个类别变量有很多标签，那经常会伴随的另一个问题是部分取值出现的频次很稀少（当然，变量的标签并不多的情况下也可能出现罕见值）。例如，假设有个变量是“贷款申请者的居住城市”，则可以想象大城市的出现频次很多，而像“阿克苏”这样的小城市出现的就很少。具体多“少”算是少没有一个固定的标准，一般来说如果只占总体的5%以下可以认为是罕见值。</p>
 <div class="section" id="id8">
-<h3><a class="toc-backref" href="#id46">4.1 类别变量罕见值带来的问题</a><a class="headerlink" href="#id8" title="永久链接至标题">¶</a></h3>
+<h3><a class="toc-backref" href="#id47">4.1 类别变量罕见值带来的问题</a><a class="headerlink" href="#id8" title="永久链接至标题">¶</a></h3>
 <blockquote>
 <div><ul class="simple">
 <li>变量中存在很多的罕见值可能引入噪音，使得模型容易过拟合</li>
@@ -531,7 +567,7 @@
 </div></blockquote>
 </div>
 <div class="section" id="id9">
-<h3><a class="toc-backref" href="#id47">4.2 处理方法</a><a class="headerlink" href="#id9" title="永久链接至标题">¶</a></h3>
+<h3><a class="toc-backref" href="#id48">4.2 处理方法</a><a class="headerlink" href="#id9" title="永久链接至标题">¶</a></h3>
 <p>类别变量的罕见值和异常值相似，可能毫无用处带来噪音，也可能是重要的信息来源。一般来说，如果类别变量只有少量标签，则罕见值可能含有有价值的信息，如果类别变量有很多标签，则很有可能自然就出现很多罕见值，并且并无多大价值。</p>
 <dl class="docutils">
 <dt><strong>One predominant category</strong></dt>
@@ -557,14 +593,15 @@
 </div>
 </div>
 <div class="section" id="id10">
-<h2><a class="toc-backref" href="#id48">5. 类别型变量的编码</a><a class="headerlink" href="#id10" title="永久链接至标题">¶</a></h2>
-<p>类别型变量无法直接计算，需要处理。</p>
+<h2><a class="toc-backref" href="#id49">5. 类别变量的编码</a><a class="headerlink" href="#id10" title="永久链接至标题">¶</a></h2>
+<p>类别型量无法直接计算，需要处理。</p>
+<p>本章节代码可在 <a class="reference external" href="https://github.com/13918078239/Machine-Learning-From-Scratch/blob/master/codes/LabelEncoding.ipynb">这里</a> 找到。</p>
 <div class="section" id="one-hot-encoding">
-<h3><a class="toc-backref" href="#id49">5.1 One Hot Encoding</a><a class="headerlink" href="#one-hot-encoding" title="永久链接至标题">¶</a></h3>
+<h3><a class="toc-backref" href="#id50">5.1 One Hot Encoding</a><a class="headerlink" href="#one-hot-encoding" title="永久链接至标题">¶</a></h3>
 <p>最常用的方法，又称“独热编码”或“一位有效编码”，即将一个类别变量转换为多个二值变量，这些二值变量只能取0/1，表示对应的类别是否激活。每一个二值变量也称为 dummy variable。</p>
-<p>例如，性别变量经过one hot encoidng转换后：
-.. image:: images/onehot1.png
-.. image:: images/onehot2.png</p>
+<p>例如，性别变量经过one hot encoidng转换后：</p>
+<img alt="_images/onehot1.png" src="_images/onehot1.png" />
+<img alt="_images/onehot2.png" src="_images/onehot2.png" />
 <p>值得注意的是，要表示一个K个标签的类别变量，我们可以转换为K个二值变量，也可以只用K-1个二值变量来表示（所有都取0时即代表剩下的那个标签）。</p>
 <dl class="docutils">
 <dt><strong>优点</strong></dt>
@@ -582,12 +619,12 @@
 </dd>
 </dl>
 <div class="section" id="kk-1">
-<h4><a class="toc-backref" href="#id50">5.1.1 何时使用K或K-1个二值变量</a><a class="headerlink" href="#kk-1" title="永久链接至标题">¶</a></h4>
+<h4><a class="toc-backref" href="#id51">5.1.1 何时使用K或K-1个二值变量</a><a class="headerlink" href="#kk-1" title="永久链接至标题">¶</a></h4>
 <blockquote>
 <div><ul class="simple">
 <li>当原类别变量只有2个标签时，只创建1个二值变量</li>
 <li><dl class="first docutils">
-<dt>当原类别变量有大于2个标签时：</dt>
+<dt>当原类别变量有多于2个标签时：</dt>
 <dd><ul class="first last">
 <li>对于训练过程中同时考虑所有自变量的算法，创建K-1个二值变量</li>
 <li>对于训练过程中只考虑部分自变量的算法，创建K个二值变量（例如基于树的方法）</li>
@@ -599,16 +636,16 @@
 </div></blockquote>
 </div>
 <div class="section" id="id11">
-<h4><a class="toc-backref" href="#id51">5.1.2 如何处理类别变量标签过多的情况</a><a class="headerlink" href="#id11" title="永久链接至标题">¶</a></h4>
+<h4><a class="toc-backref" href="#id52">5.1.2 如何处理类别变量标签过多的情况</a><a class="headerlink" href="#id11" title="永久链接至标题">¶</a></h4>
 <p>只对出现频次最多的 Top N 个标签进行编码，把剩余的标签归为一组。虽然会损失一部分信息，但也能有效防止特征空间变得太大。</p>
 </div>
 </div>
 <div class="section" id="ordinal-numbering-encoding">
-<h3><a class="toc-backref" href="#id52">5.2 Ordinal Numbering Encoding</a><a class="headerlink" href="#ordinal-numbering-encoding" title="永久链接至标题">¶</a></h3>
-<p>有序数值编码，指的是如果类别变量是定序变量，即顺序是有意义的，那么我们可以直接用数字来替代标签。例如，一星期中的第几天（周一、周二...）可以编码为1/2/3/.../7。</p>
+<h3><a class="toc-backref" href="#id53">5.2 Ordinal Numbering Encoding</a><a class="headerlink" href="#ordinal-numbering-encoding" title="永久链接至标题">¶</a></h3>
+<p>有序数值编码，指的是如果类别变量是定序变量，即顺序是有意义的，那么我们可以直接用数字来替代标签。例如，一星期中的第几天（周一、周二...周日）可以编码为1/2/.../7。</p>
 </div>
 <div class="section" id="target-guided-ordinal-encoding">
-<h3><a class="toc-backref" href="#id53">5.3 Target guided ordinal encoding</a><a class="headerlink" href="#target-guided-ordinal-encoding" title="永久链接至标题">¶</a></h3>
+<h3><a class="toc-backref" href="#id54">5.3 Target Guided Ordinal Encoding</a><a class="headerlink" href="#target-guided-ordinal-encoding" title="永久链接至标题">¶</a></h3>
 <p>根据目标变量进行有序编码。这类方法会对目标变量和自变量之间建立一个单调的关系（即两个变量同向或反向变化，一个变量的值增加时，另一个变量的值也增加或减小）。</p>
 <dl class="docutils">
 <dt><strong>优点</strong></dt>
@@ -624,19 +661,19 @@
 </dd>
 </dl>
 <div class="section" id="ordering-labels-according-to-the-target">
-<h4><a class="toc-backref" href="#id54">5.3.1 Ordering labels according to the target</a><a class="headerlink" href="#ordering-labels-according-to-the-target" title="永久链接至标题">¶</a></h4>
+<h4><a class="toc-backref" href="#id55">5.3.1 Ordering Labels According to the Target</a><a class="headerlink" href="#ordering-labels-according-to-the-target" title="永久链接至标题">¶</a></h4>
 <p>根据目标变量的值将类别变量的标签排序。计算该类别变量每个标签下所有样本在目标变量上的平均值，再根据该平均值对标签进行排序，赋予对应的数字，替换原来的标签。</p>
 </div>
 <div class="section" id="mean-encoding">
-<h4><a class="toc-backref" href="#id55">5.3.2 Mean Encoding</a><a class="headerlink" href="#mean-encoding" title="永久链接至标题">¶</a></h4>
+<h4><a class="toc-backref" href="#id56">5.3.2 Mean Encoding</a><a class="headerlink" href="#mean-encoding" title="永久链接至标题">¶</a></h4>
 <p>将类别变量的标签用目标变量的均值替换。与上一节的方法类似，不过是用该标签下所有样本在目标变量上的平均值直接替换原来的标签。这种方法下，会在目标变量与类别变量之间建立一个线性关系。</p>
 </div>
 <div class="section" id="probability-ratio-encoding">
-<h4><a class="toc-backref" href="#id56">5.3.3 Probability ratio encoding</a><a class="headerlink" href="#probability-ratio-encoding" title="永久链接至标题">¶</a></h4>
+<h4><a class="toc-backref" href="#id57">5.3.3 Probability Ratio Encoding</a><a class="headerlink" href="#probability-ratio-encoding" title="永久链接至标题">¶</a></h4>
 <p>即将类别变量的标签用每个标签下所有样本在目标变量上等于1的概率的均值(P(1))与等于0的概率的均值(P(0))的比值(P(1)/P(0))来替换。</p>
 </div>
-<div class="section" id="weight-of-evidence-woe-todo">
-<h4><a class="toc-backref" href="#id57">5.3.4 Weight of evidence (WoE) TODO</a><a class="headerlink" href="#weight-of-evidence-woe-todo" title="永久链接至标题">¶</a></h4>
+<div class="section" id="weight-of-evidence-woe">
+<h4><a class="toc-backref" href="#id58">5.3.4 Weight of Evidence (WoE)</a><a class="headerlink" href="#weight-of-evidence-woe" title="永久链接至标题">¶</a></h4>
 <p>WoE广泛应用与金融领域个人信用风险预测中，作为衡量分组后模型对好坏申请人区分能力的指标。</p>
 <p><strong>计算</strong>
 WoE = ln( (Proportion of Good Credit Outcomes) / (Proportion of Bad Credit Outcomes))</p>
@@ -659,7 +696,7 @@ WoE = ln( (Proportion of Good Credit Outcomes) / (Proportion of Bad Credit Outco
 </div>
 </div>
 <div class="section" id="id12">
-<h2><a class="toc-backref" href="#id58">6. 机器学习算法总结</a><a class="headerlink" href="#id12" title="永久链接至标题">¶</a></h2>
+<h2><a class="toc-backref" href="#id59">6. 机器学习算法与特征清洗小结</a><a class="headerlink" href="#id12" title="永久链接至标题">¶</a></h2>
 <img alt="_images/algo_overview.png" src="_images/algo_overview.png" />
 <p>图片来源： <a class="footnote-reference" href="#id20" id="id13">[7]</a></p>
 <p class="rubric">References</p>
@@ -716,10 +753,10 @@ WoE = ln( (Proportion of Good Credit Outcomes) / (Proportion of Bad Credit Outco
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="特征缩放.html" class="btn btn-neutral float-right" title="特征缩放 Feature Scaling TODO" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="特征缩放.html" class="btn btn-neutral float-right" title="特征缩放 Feature Scaling" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="什么是变量.html" class="btn btn-neutral" title="什么是变量 Variable" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="数据探索.html" class="btn btn-neutral" title="数据探索 Data Exploration" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

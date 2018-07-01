@@ -50,7 +50,7 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = 'Eamon\'s Machine Learning'
+project = 'Machine Learning From Scratch'
 copyright = '2018, Eamon_Zhang'
 author = 'Eamon_Zhang'
 

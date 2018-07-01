@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>特征缩放 Feature Scaling TODO &mdash; Eamon&#39;s Machine Learning 0.1 文档</title>
+  <title>特征缩放 Feature Scaling &mdash; Machine Learning From Scratch 0.1 文档</title>
   
 
   
@@ -49,7 +49,7 @@
           
 
           
-            <a href="index.html" class="icon icon-home"> Eamon's Machine Learning
+            <a href="index.html" class="icon icon-home"> Machine Learning From Scratch
           
 
           
@@ -85,16 +85,39 @@
             
               <p class="caption"><span class="caption-text">数据处理 Data Processing</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="什么是变量.html">什么是变量 Variable</a></li>
+<li class="toctree-l1"><a class="reference internal" href="数据探索.html">数据探索 Data Exploration</a></li>
 <li class="toctree-l1"><a class="reference internal" href="特征清洗.html">特征清洗 Feature Cleaning</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">特征缩放 Feature Scaling TODO</a><ul>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">特征缩放 Feature Scaling</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#id1">1. 为什么要做特征缩放？</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id2">2. 零均值化与标准化</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id3">3. 最大-最小值标准化</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id4">4. 缩放至中位数和百分位数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id2">2. 特征缩放的方法</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id3">2.1 零均值化与标准化</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">2.2 最大-最小值标准化</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id5">2.3 缩放至中位数和百分位数</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#scaling-to-unit-length">2.4 Scaling to Unit Length</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="特征工程.html">特征工程 Feature Engineering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="特征选择.html">特征选择 (TODO)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="特征学习.html">特征学习 (TODO)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="数据集构造.html">数据集构造 (TODO)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="特征监控.html">特征监控 (TODO)</a></li>
+</ul>
+<p class="caption"><span class="caption-text">数学基础 Math</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="微积分.html">微积分 Calculus (TODO)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="线性代数.html">线性代数 Linear Algebra (TODO)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="概率论.html">概率论 Probability (TODO)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="统计.html">统计 Stats (TODO)</a></li>
+</ul>
+<p class="caption"><span class="caption-text">机器学习算法 Algorithm</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="模型调优.html">模型调优 (TODO)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="优化算法.html">优化算法 (TODO)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="模型评估.html">模型评估 (TODO)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="正则化.html">正则化 (TODO)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="损失函数.html">损失函数 Loss Function (TODO)</a></li>
 </ul>
 
             
@@ -109,7 +132,7 @@
       <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="index.html">Eamon's Machine Learning</a>
+          <a href="index.html">Machine Learning From Scratch</a>
         
       </nav>
 
@@ -140,7 +163,7 @@
     
       <li><a href="index.html">Docs</a> &raquo;</li>
         
-      <li>特征缩放 Feature Scaling TODO</li>
+      <li>特征缩放 Feature Scaling</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -159,47 +182,54 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="feature-scaling-todo">
-<h1>特征缩放 Feature Scaling TODO<a class="headerlink" href="#feature-scaling-todo" title="永久链接至标题">¶</a></h1>
+  <div class="section" id="feature-scaling">
+<h1>特征缩放 Feature Scaling<a class="headerlink" href="#feature-scaling" title="永久链接至标题">¶</a></h1>
 <div class="contents local topic" id="contents">
 <ul class="simple">
-<li><a class="reference internal" href="#id1" id="id5">1. 为什么要做特征缩放？</a></li>
-<li><a class="reference internal" href="#id2" id="id6">2. 零均值化与标准化</a></li>
-<li><a class="reference internal" href="#id3" id="id7">3. 最大-最小值标准化</a></li>
-<li><a class="reference internal" href="#id4" id="id8">4. 缩放至中位数和百分位数</a></li>
+<li><a class="reference internal" href="#id1" id="id6">1. 为什么要做特征缩放？</a></li>
+<li><a class="reference internal" href="#id2" id="id7">2. 特征缩放的方法</a><ul>
+<li><a class="reference internal" href="#id3" id="id8">2.1 零均值化与标准化</a></li>
+<li><a class="reference internal" href="#id4" id="id9">2.2 最大-最小值标准化</a></li>
+<li><a class="reference internal" href="#id5" id="id10">2.3 缩放至中位数和百分位数</a></li>
+<li><a class="reference internal" href="#scaling-to-unit-length" id="id11">2.4 Scaling to Unit Length</a></li>
+</ul>
+</li>
 </ul>
 </div>
 <div class="section" id="id1">
-<h2><a class="toc-backref" href="#id5">1. 为什么要做特征缩放？</a><a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h2>
+<h2><a class="toc-backref" href="#id6">1. 为什么要做特征缩放？</a><a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h2>
+<p>TODO</p>
 </div>
 <div class="section" id="id2">
-<h2><a class="toc-backref" href="#id6">2. 零均值化与标准化</a><a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h2>
+<h2><a class="toc-backref" href="#id7">2. 特征缩放的方法</a><a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h2>
+<div class="section" id="id3">
+<h3><a class="toc-backref" href="#id8">2.1 零均值化与标准化</a><a class="headerlink" href="#id3" title="永久链接至标题">¶</a></h3>
 <p>零均值化即把每个变量的均值都变为0，方法是对每个样本的取值都减去该变量的平均值。</p>
 <p>标准化即在零均值化的基础上更进一步，不仅把变量的均值置为0，且把方差置为1，方法是对每个样本的取值减去该变量的平均值，再除以标准差。</p>
 <p>公式： z = (x-x.mean) / standard deviation</p>
-<p>通过零均值化或标准化的处理，可以使得不同的特征具有相同的尺度（Scale）。这样，在学习参数的时候，不同特征对参数的影响程度就一样了。</p>
+<p>通过零均值化或标准化的处理，可以使得不同的特征具有相同的尺度。这样，在学习参数的时候，不同特征对参数的影响程度就一样了。</p>
 <dl class="docutils">
 <dt><strong>缺点</strong></dt>
 <dd><ul class="first last simple">
-<li>如果变量是偏态分布的或存在极端值，则标准化后的变量分布会被压缩在一个窄小的区间内</li>
-</ul>
-</dd>
-</dl>
-</div>
-<div class="section" id="id3">
-<h2><a class="toc-backref" href="#id7">3. 最大-最小值标准化</a><a class="headerlink" href="#id3" title="永久链接至标题">¶</a></h2>
-<p>之前XX节提到了，变量的数值差异会影响算法的表现，而最大-最小值标准化可以将变量的值压缩到[0,1]的区间内。</p>
-<p>公式：  X = (x-x.min) / (x.max-x.min)</p>
-<dl class="docutils">
-<dt><strong>缺点</strong></dt>
-<dd><ul class="first last simple">
-<li>与标准化方法的缺点类似，如果变量是偏态分布的或存在极端值，则标准化后的变量分布会被压缩在一个窄小的区间内</li>
+<li>如果变量是偏态分布的或存在极端值，则标准化后的变量分布会被压缩在一个窄小的区间内。</li>
 </ul>
 </dd>
 </dl>
 </div>
 <div class="section" id="id4">
-<h2><a class="toc-backref" href="#id8">4. 缩放至中位数和百分位数</a><a class="headerlink" href="#id4" title="永久链接至标题">¶</a></h2>
+<h3><a class="toc-backref" href="#id9">2.2 最大-最小值标准化</a><a class="headerlink" href="#id4" title="永久链接至标题">¶</a></h3>
+<p>变量的数值差异会影响算法的表现，而最大-最小值标准化可以将变量的值压缩到[0,1]的区间内。</p>
+<p>公式：  X = (x-x.min) / (x.max-x.min)</p>
+<dl class="docutils">
+<dt><strong>缺点</strong></dt>
+<dd><ul class="first last simple">
+<li>与标准化方法的缺点类似，如果变量是偏态分布的或存在极端值，则标准化后的变量分布会被压缩在一个窄小的区间内。</li>
+</ul>
+</dd>
+</dl>
+</div>
+<div class="section" id="id5">
+<h3><a class="toc-backref" href="#id10">2.3 缩放至中位数和百分位数</a><a class="headerlink" href="#id5" title="永久链接至标题">¶</a></h3>
 <p>该方法将每个样本减去该变量的中位数，再除以四分位差（IQR）。</p>
 <p>公式： X_scaled = (x-x.median) / IQR</p>
 <p>IQR = 75th quantile - 25th quantile</p>
@@ -210,6 +240,10 @@
 </ul>
 </dd>
 </dl>
+</div>
+<div class="section" id="scaling-to-unit-length">
+<h3><a class="toc-backref" href="#id11">2.4 Scaling to Unit Length</a><a class="headerlink" href="#scaling-to-unit-length" title="永久链接至标题">¶</a></h3>
+</div>
 </div>
 </div>
 

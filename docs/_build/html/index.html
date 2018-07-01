@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Eamon’s Machine Learning Archive &mdash; Eamon&#39;s Machine Learning 0.1 文档</title>
+  <title>Machine Learning From Scratch &mdash; Machine Learning From Scratch 0.1 文档</title>
   
 
   
@@ -29,7 +29,7 @@
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="index" title="索引" href="genindex.html" />
     <link rel="search" title="搜索" href="search.html" />
-    <link rel="next" title="什么是变量 Variable" href="什么是变量.html" /> 
+    <link rel="next" title="数据探索 Data Exploration" href="数据探索.html" /> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -48,7 +48,7 @@
           
 
           
-            <a href="#" class="icon icon-home"> Eamon's Machine Learning
+            <a href="#" class="icon icon-home"> Machine Learning From Scratch
           
 
           
@@ -84,10 +84,29 @@
             
               <p class="caption"><span class="caption-text">数据处理 Data Processing</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="什么是变量.html">什么是变量 Variable</a></li>
+<li class="toctree-l1"><a class="reference internal" href="数据探索.html">数据探索 Data Exploration</a></li>
 <li class="toctree-l1"><a class="reference internal" href="特征清洗.html">特征清洗 Feature Cleaning</a></li>
-<li class="toctree-l1"><a class="reference internal" href="特征缩放.html">特征缩放 Feature Scaling TODO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="特征缩放.html">特征缩放 Feature Scaling</a></li>
 <li class="toctree-l1"><a class="reference internal" href="特征工程.html">特征工程 Feature Engineering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="特征选择.html">特征选择 (TODO)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="特征学习.html">特征学习 (TODO)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="数据集构造.html">数据集构造 (TODO)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="特征监控.html">特征监控 (TODO)</a></li>
+</ul>
+<p class="caption"><span class="caption-text">数学基础 Math</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="微积分.html">微积分 Calculus (TODO)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="线性代数.html">线性代数 Linear Algebra (TODO)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="概率论.html">概率论 Probability (TODO)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="统计.html">统计 Stats (TODO)</a></li>
+</ul>
+<p class="caption"><span class="caption-text">机器学习算法 Algorithm</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="模型调优.html">模型调优 (TODO)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="优化算法.html">优化算法 (TODO)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="模型评估.html">模型评估 (TODO)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="正则化.html">正则化 (TODO)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="损失函数.html">损失函数 Loss Function (TODO)</a></li>
 </ul>
 
             
@@ -102,7 +121,7 @@
       <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="#">Eamon's Machine Learning</a>
+          <a href="#">Machine Learning From Scratch</a>
         
       </nav>
 
@@ -133,7 +152,7 @@
     
       <li><a href="#">Docs</a> &raquo;</li>
         
-      <li>Eamon&#8217;s Machine Learning Archive</li>
+      <li>Machine Learning From Scratch</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -152,23 +171,46 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="eamon-s-machine-learning-archive">
-<h1>Eamon&#8217;s Machine Learning Archive<a class="headerlink" href="#eamon-s-machine-learning-archive" title="永久链接至标题">¶</a></h1>
+  <div class="section" id="machine-learning-from-scratch">
+<h1>Machine Learning From Scratch<a class="headerlink" href="#machine-learning-from-scratch" title="永久链接至标题">¶</a></h1>
 </div>
-<div class="section" id="eamon">
-<h1>Eamon 的机器学习资料库<a class="headerlink" href="#eamon" title="永久链接至标题">¶</a></h1>
-<p>Brief visual explanations of machine learning concepts with diagrams, code examples and links to resources for learning more.</p>
+<div class="section" id="eamon-s">
+<h1>Eamon&#8217;s 机器学习资料库<a class="headerlink" href="#eamon-s" title="永久链接至标题">¶</a></h1>
+<p>系统梳理机器学习的各个知识点，概念+原理+代码。</p>
 <div class="admonition warning">
 <p class="first admonition-title">警告</p>
-<p class="last">This document is under early stage development. If you find errors, please raise an <a class="reference external" href="https://github.com/bfortuner/ml-cheatsheet/issues">issue</a> or <a class="reference external" href="https://github.com/bfortuner/ml-cheatsheet/blob/master/README.md">contribute</a> a better definition!</p>
+<p class="last">本项目仍在早期开发阶段，如果读者发现问题或疑惑或有其他精彩想法，欢迎提交 <a class="reference external" href="https://github.com/13918078239/Machine-Learning-From-Scratch/issues">issue</a></p>
 </div>
 <div class="toctree-wrapper compound">
 <p class="caption"><span class="caption-text">数据处理 Data Processing</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="什么是变量.html">什么是变量 Variable</a></li>
+<li class="toctree-l1"><a class="reference internal" href="数据探索.html">数据探索 Data Exploration</a></li>
 <li class="toctree-l1"><a class="reference internal" href="特征清洗.html">特征清洗 Feature Cleaning</a></li>
-<li class="toctree-l1"><a class="reference internal" href="特征缩放.html">特征缩放 Feature Scaling TODO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="特征缩放.html">特征缩放 Feature Scaling</a></li>
 <li class="toctree-l1"><a class="reference internal" href="特征工程.html">特征工程 Feature Engineering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="特征选择.html">特征选择 (TODO)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="特征学习.html">特征学习 (TODO)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="数据集构造.html">数据集构造 (TODO)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="特征监控.html">特征监控 (TODO)</a></li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<p class="caption"><span class="caption-text">数学基础 Math</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="微积分.html">微积分 Calculus (TODO)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="线性代数.html">线性代数 Linear Algebra (TODO)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="概率论.html">概率论 Probability (TODO)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="统计.html">统计 Stats (TODO)</a></li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<p class="caption"><span class="caption-text">机器学习算法 Algorithm</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="模型调优.html">模型调优 (TODO)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="优化算法.html">优化算法 (TODO)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="模型评估.html">模型评估 (TODO)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="正则化.html">正则化 (TODO)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="损失函数.html">损失函数 Loss Function (TODO)</a></li>
 </ul>
 </div>
 </div>
@@ -181,7 +223,7 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="什么是变量.html" class="btn btn-neutral float-right" title="什么是变量 Variable" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="数据探索.html" class="btn btn-neutral float-right" title="数据探索 Data Exploration" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
     </div>

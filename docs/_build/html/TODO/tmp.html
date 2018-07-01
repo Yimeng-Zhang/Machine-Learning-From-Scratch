@@ -1,0 +1,324 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="zh-CN" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="zh-CN" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>数学基础 &mdash; Machine Learning From Scratch 0.1 文档</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜索" href="../search.html" /> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Machine Learning From Scratch
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">数据处理 Data Processing</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../什么是变量.html">什么是变量 Variable</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../特征清洗.html">特征清洗 Feature Cleaning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../特征缩放.html">特征缩放 Feature Scaling TODO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../特征工程.html">特征工程 Feature Engineering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../特征选择.html">特征选择 Feature Selection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../特征学习.html">特征学习  Representation Learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../数据集构造.html">数据集构造 Dataset Construction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../特征监控.html">特征监控 Feature Monitoring</a></li>
+</ul>
+<p class="caption"><span class="caption-text">数学基础 Math</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../微积分.html">微积分 Calculus (TODO)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../线性代数.html">线性代数 Linear Algebra (TODO)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../概率论.html">概率论 Probability (TODO)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../统计.html">统计 Stats (TODO)</a></li>
+</ul>
+<p class="caption"><span class="caption-text">机器学习算法 Algorithm</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../模型调优.html">模型调优 (TODO)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../优化算法.html">优化算法 (TODO)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../模型评估.html">模型评估 (TODO)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../正则化.html">正则化 (TODO)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../损失函数.html">损失函数 Loss Function (TODO)</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Machine Learning From Scratch</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>数学基础</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/TODO/tmp.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="id1">
+<h1>数学基础<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h1>
+<div class="contents local topic" id="contents">
+<ul class="simple">
+<li><a class="reference internal" href="#function-and-data-generalization" id="id10">1. Function and Data Generalization</a></li>
+<li><a class="reference internal" href="#id2" id="id11">2. 线性代数</a></li>
+</ul>
+</div>
+<div class="section" id="function-and-data-generalization">
+<h2><a class="toc-backref" href="#id10">1. Function and Data Generalization</a><a class="headerlink" href="#function-and-data-generalization" title="永久链接至标题">¶</a></h2>
+<p>Function 函数: 函数是一种关系，这种关系描述了一个集合（输入）里的每一个元素如何对应到另一个（可能相同的）集合（输出）里的唯一元素。</p>
+<p>输入是标量
+输入是多维的</p>
+</div>
+<div class="section" id="id2">
+<h2><a class="toc-backref" href="#id11">2. 线性代数</a><a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h2>
+<p>2.1 向量</p>
+<p>2.2 向量空间</p>
+<p>2.3 向量的馍
+L0 馍：有多少个数 不等于0
+L2馍：欧几里德距离，圆
+L1馍：曼哈顿距离，绝对值相加
+L无穷大馍，即最大的Xi
+圆上所有点L2馍距离相同；菱形上任何点，他的L1馍都是相同的</p>
+<p>2.4 矩阵</p>
+<p>2.5 张量</p>
+<p>行列式</p>
+<p>特征值 特征向量
+网站动画演示
+左乘A后，向量v变成另一个向量
+如果v在特征向量的方向上，Av一定也在其特征向量上
+左乘以 在特征向量方向上扩大了 特征值 倍</p>
+<p>矩阵的trace
+对角线的值的加和</p>
+<p>奇异值分解
+把一个矩阵分解为3个矩阵的乘积，其中一个是对角矩阵</p>
+<p>图函数 凹函数
+任何两个点的直线都在集合之内
+不在的，非凸集合</p>
+<p>凸函数定义
+去两个点，直线上的点全部在函数上方，则是凸函数</p>
+<ol class="arabic simple" start="3">
+<li>概率论与统计</li>
+</ol>
+<p class="rubric">References</p>
+<table class="docutils footnote" frame="void" id="id3" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label">[1]</td><td>Rubin, D. B. (1976). Inference and missing data. Biometrika 63(3): 581-592.</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id4" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label">[2]</td><td><a class="reference external" href="https://www.iriseekhout.com/missing-data/missing-data-mechanisms/assuming-a-missing-data-mechanism/">https://www.iriseekhout.com/missing-data/missing-data-mechanisms/assuming-a-missing-data-mechanism/</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id5" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label">[3]</td><td><a class="reference external" href="https://liberalarts.utexas.edu/prc/_files/cs/Missing-Data.pdf">https://liberalarts.utexas.edu/prc/_files/cs/Missing-Data.pdf</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id6" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label">[4]</td><td><a class="reference external" href="http://www.stat.columbia.edu/~gelman/arm/missing.pdf">http://www.stat.columbia.edu/~gelman/arm/missing.pdf</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id7" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label">[5]</td><td><a class="reference external" href="http://www.statisticshowto.com/multiple-imputation/">http://www.statisticshowto.com/multiple-imputation/</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id8" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label">[6]</td><td><a class="reference external" href="https://www.udemy.com/feature-engineering-for-machine-learning/learn/v4/content">https://www.udemy.com/feature-engineering-for-machine-learning/learn/v4/content</a> Ch7-43</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id9" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label">[7]</td><td><a class="reference external" href="https://www.udemy.com/feature-engineering-for-machine-learning/learn/v4/content">https://www.udemy.com/feature-engineering-for-machine-learning/learn/v4/content</a> Ch3-25</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Eamon_Zhang.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'0.1',
+            LANGUAGE:'zh_CN',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="../_static/translations.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
