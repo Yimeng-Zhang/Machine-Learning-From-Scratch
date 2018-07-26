@@ -16,13 +16,13 @@ Eamon's 机器学习资料库
 
 .. toctree::
     :caption: 数据处理 Data Processing
-    :maxdepth: 1
+    :maxdepth: 2
 
     数据探索
     特征清洗 
     特征缩放
     特征工程
-    特征选择 (TODO) <特征选择>
+    特征选择 (InProcess) <特征选择>
     特征学习 (TODO) <特征学习>
     数据集构造 (TODO) <数据集构造>
     特征监控 (TODO) <特征监控>
@@ -32,10 +32,11 @@ Eamon's 机器学习资料库
     :caption: 数学基础 Math
     :maxdepth: 1
 
-    微积分 Calculus (TODO)  <微积分>
+    微积分 Calculus (InProcess)  <微积分>
     线性代数 Linear Algebra (TODO)   <线性代数>
     概率论 Probability (TODO)  <概率论>
     统计 Stats (TODO)  <统计>
+    最优化理论/凸分析 (TODO) <最优化理论>
     
 .. toctree::
     :caption: 机器学习算法 Algorithm
