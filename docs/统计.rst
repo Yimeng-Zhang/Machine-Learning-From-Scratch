@@ -1,3 +1,8 @@
 ===================================
 统计
 ===================================
+
+.. contents:: :local:
+
+.. https://zhuanlan.zhihu.com/p/33795588
+.. http://www.ai-start.com/dl2017/html/math.html

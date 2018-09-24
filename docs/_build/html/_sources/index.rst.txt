@@ -57,3 +57,9 @@ Eamon's 机器学习资料库
 .. * :ref:`genindex`
 .. * :ref:`modindex`
 .. * :ref:`search`
+
+.. 距离计算
+.. 决策树的划分比较
+.. 无量纲处理 
+.. http://scikit-learn.org/stable/auto_examples/preprocessing/plot_all_scaling.html
+.. https://www.quora.com/What-is-the-difference-between-Manhattan-and-Euclidean-distance-measures
