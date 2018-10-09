@@ -1,0 +1,15 @@
+===================================
+不平衡问题
+===================================
+
+
+下采样
+
+上采样
+
+调整 decision tree class probablity
+
+对不同class使用不同的penaly
+
+modify learning function to adjust calss boundary
+

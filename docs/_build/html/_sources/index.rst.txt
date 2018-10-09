@@ -33,7 +33,7 @@ Eamon's 机器学习资料库
     :maxdepth: 1
 
     微积分 Calculus (InProcess)  <微积分>
-    线性代数 Linear Algebra (TODO)   <线性代数>
+    线性代数 Linear Algebra (InProcess)   <线性代数>
     概率论 Probability (TODO)  <概率论>
     统计 Stats (TODO)  <统计>
     最优化理论/凸分析 (TODO) <最优化理论>
