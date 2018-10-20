@@ -1,0 +1,405 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="zh-CN" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="zh-CN" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>多变量微积分 Calculus Part2 &mdash; Machine Learning From Scratch 0.1 文档</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="索引" href="genindex.html" />
+    <link rel="search" title="搜索" href="search.html" />
+    <link rel="next" title="线性代数" href="线性代数.html" />
+    <link rel="prev" title="单变量微积分 Calculus Part1" href="单变量微积分.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Machine Learning From Scratch
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">数据处理 Data Processing</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="数据探索.html">数据探索 Data Exploration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="特征清洗.html">特征清洗 Feature Cleaning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="特征缩放.html">特征缩放 Feature Scaling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="特征工程.html">特征工程 Feature Engineering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="特征选择.html">特征选择 (InProcess)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="特征学习.html">特征学习 (TODO)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="数据集构造.html">数据集构造 (TODO)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="特征监控.html">特征监控 (TODO)</a></li>
+</ul>
+<p class="caption"><span class="caption-text">数学基础 Math</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="单变量微积分.html">单变量微积分 Calculus P1</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">多变量微积分 Calculus P2</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id1">1. 偏导数</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id2">1.1 偏导数的定义</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">1.2 偏导数的计算</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">1.3 高阶偏导数</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id5">2. 方向导数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id6">3. 梯度</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id7">4. 多元函数的极值</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id8">4.1 极值的必要条件</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id9">4.2 极值的充分条件</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id10">5. 多元函数求导</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#jacobian">5.1 Jacobian矩阵</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#hessian">5.2 Hessian矩阵</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id11">5.3 常用的函数求导等式</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="线性代数.html">线性代数 Linear Algebra (InProcess)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="概率论.html">概率论 Probability (TODO)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="统计.html">统计 Stats (TODO)</a></li>
+</ul>
+<p class="caption"><span class="caption-text">机器学习算法 Algorithm</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="模型调优.html">模型调优 (TODO)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="优化算法.html">优化算法 (TODO)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="模型评估.html">模型评估 (TODO)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="正则化.html">正则化 (TODO)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="损失函数.html">损失函数 Loss Function (TODO)</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Machine Learning From Scratch</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>多变量微积分 Calculus Part2</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/多变量微积分.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="calculus-part2">
+<h1>多变量微积分 Calculus Part2<a class="headerlink" href="#calculus-part2" title="永久链接至标题">¶</a></h1>
+<div class="contents local topic" id="contents">
+<ul class="simple">
+<li><a class="reference internal" href="#id1" id="id14">1. 偏导数</a><ul>
+<li><a class="reference internal" href="#id2" id="id15">1.1 偏导数的定义</a></li>
+<li><a class="reference internal" href="#id3" id="id16">1.2 偏导数的计算</a></li>
+<li><a class="reference internal" href="#id4" id="id17">1.3 高阶偏导数</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id5" id="id18">2. 方向导数</a></li>
+<li><a class="reference internal" href="#id6" id="id19">3. 梯度</a></li>
+<li><a class="reference internal" href="#id7" id="id20">4. 多元函数的极值</a><ul>
+<li><a class="reference internal" href="#id8" id="id21">4.1 极值的必要条件</a></li>
+<li><a class="reference internal" href="#id9" id="id22">4.2 极值的充分条件</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id10" id="id23">5. 多元函数求导</a><ul>
+<li><a class="reference internal" href="#jacobian" id="id24">5.1 Jacobian矩阵</a></li>
+<li><a class="reference internal" href="#hessian" id="id25">5.2 Hessian矩阵</a></li>
+<li><a class="reference internal" href="#id11" id="id26">5.3 常用的函数求导等式</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="id1">
+<h2><a class="toc-backref" href="#id14">1. 偏导数</a><a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h2>
+<div class="section" id="id2">
+<h3><a class="toc-backref" href="#id15">1.1 偏导数的定义</a><a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h3>
+<p>在单变量微积分中，我们已经知道了导数就是函数的变化率。对于多元函数，我们也可以研究其变化率。</p>
+<p>以二元函数 z = f(x,y) 为例，如果将 y 看为是固定的，这时 z 就是 x 的一元函数，函数对 x 的导数就称为该二元函数 z 对 x 的偏导数。推广开来，一个多元的函数的偏导数，就是它关于其中一个变量的导数，而保持其他变量恒定。与单变量函数的导数类似，偏导数的公式如下：</p>
+<img alt="_images/偏导数.png" src="_images/偏导数.png" />
+<p>如果多元函数 z 在定义域内每一点处对 x 的偏导数都存在，那这个偏导数就称为对自变量 x 的偏导函数。</p>
+<p>需要注意的是，多元函数的偏导数存在只能保证某点 P 沿着平行于坐标轴的方向趋近于 P0 时，函数值 f(P) 趋于 f(P0)，但不能保证 P 按任何方式趋近于 P0 时函数值都趋于 f(P0)。换句话说，偏导数只反映了函数沿着坐标轴正方向上的变化率，而不是任意方向。</p>
+<p>偏导数的表示符号为 ∂，反映了多元函数沿坐标轴正方向的变化率。</p>
+</div>
+<div class="section" id="id3">
+<h3><a class="toc-backref" href="#id16">1.2 偏导数的计算</a><a class="headerlink" href="#id3" title="永久链接至标题">¶</a></h3>
+<p>与计算一元函数的偏导数方法类似，只要把其他变量暂时看作常量即可。例子：</p>
+<img alt="_images/偏导数计算.png" src="_images/偏导数计算.png" />
+</div>
+<div class="section" id="id4">
+<h3><a class="toc-backref" href="#id17">1.3 高阶偏导数</a><a class="headerlink" href="#id4" title="永久链接至标题">¶</a></h3>
+<p>高阶偏导就是求偏导的偏导，过程与求偏导类似。</p>
+<img alt="_images/高阶偏导数.png" src="_images/高阶偏导数.png" />
+<p>高阶混合偏导数在偏导数连续的条件下，值与求导的顺序无关。</p>
+</div>
+</div>
+<div class="section" id="id5">
+<h2><a class="toc-backref" href="#id18">2. 方向导数</a><a class="headerlink" href="#id5" title="永久链接至标题">¶</a></h2>
+<p>前面提到了，函数的偏导数是函数沿着坐标轴正方向上的变化率，但如果我们要求函数在任意方向上的变化率该肿么办？这时就引入了方向导数的概念。</p>
+<img alt="_images/方向导数.png" src="_images/方向导数.png" />
+<p>假设 z = f(x,y) 在 xyz 坐标系中是这样一个曲面，点 P(x0,y0) 是定义域中的一个点。我们已经知道通过求偏导数能知道该点 P 关于x轴和y轴的切线斜率，现在要求该点沿着单位向量 u =cosθ + sinθ （θ是该单位向量与x轴的正向夹角）方向的变化率（即P沿着射线L方向的变化率），类比一元函数导数的定义，如果下列极限存在：</p>
+<img alt="_images/方向导数公式.png" src="_images/方向导数公式.png" />
+<p>则这个极限是函数f沿着u方向的方向导数。随着θ的变化，可以求出任意方向的方向导数。因此，方向导数反映的是多元函数在 P0 点沿着任意方向 u 的变化率，即函数的增量与 P 到 L 上另一点 P0 的距离的比值的极限。</p>
+<p>在求上述极限时，除了用极限定义外，还可以用偏微分方法简化计算，直接得到方向导数公式：</p>
+<img alt="_images/方向导数公式2.png" src="_images/方向导数公式2.png" />
+<p>方向导数公式的具体证明可以参考参考资料中同济大学高等数学教材 P102 页。</p>
+</div>
+<div class="section" id="id6">
+<h2><a class="toc-backref" href="#id19">3. 梯度</a><a class="headerlink" href="#id6" title="永久链接至标题">¶</a></h2>
+<p>在说明方向导数的时候，我们得到了方向导数公式：</p>
+<img alt="_images/方向导数公式2.png" src="_images/方向导数公式2.png" />
+<p>设：</p>
+<img alt="_images/梯度1.png" src="_images/梯度1.png" />
+<p>则这个方向导数的数量积为：</p>
+<img alt="_images/梯度2.png" src="_images/梯度2.png" />
+<p>如果要让方向导数取得最大值，则夹角要为0度，即向量 I（即变化率最快的方向）与向量 A（当点P(x,y)确定时，该向量也确定）平行的时候，两者的数量积最大，函数 f(x) 的增长最快。A 即是梯度向量。换句话说，函数某点处的梯度就是函数对各个自变量的偏导数依次排序形成的向量。梯度即表示函数在该点处的方向导数沿着该方向取得最大值，即函数在该点处沿着该方向（此梯度的方向）增加最快，变化率最大（为该梯度的模）。</p>
+<p>同样的，当向量I与向量A的夹角为180度时，函数值减少的最快，函数沿着这个方向的方向导数达到最小值。</p>
+<p>最后，总结一下上面三节的关键概念:</p>
+<ul class="simple">
+<li>方向导数：是一个数；反映的是f(x,y)在P0点沿方向u的变化率。</li>
+<li>偏导数：是多个数（每元有一个）,是指多元函数沿坐标轴方向的方向导数，因此二元函数就有两个偏导数。</li>
+<li>偏导函数：是一个函数,是一个关于点的偏导数的函数。</li>
+<li>梯度：是一个向量,每个元素为函数对一元变量的偏导数,它既有大小（其大小为最大方向导数），也有方向。</li>
+</ul>
+</div>
+<div class="section" id="id7">
+<h2><a class="toc-backref" href="#id20">4. 多元函数的极值</a><a class="headerlink" href="#id7" title="永久链接至标题">¶</a></h2>
+<p>与一元函数的情况一样，机器学习中我们经常会遇到多元函数求极值的问题。极大值和极小值统称为极值。需要注意的是，极值与最值不同，极值是一个局部概念，是在一个特定的邻域上的最大或最小值，因此也称为局部最大值或局部最小值。下面我们看如何求极值。</p>
+<div class="section" id="id8">
+<h3><a class="toc-backref" href="#id21">4.1 极值的必要条件</a><a class="headerlink" href="#id8" title="永久链接至标题">¶</a></h3>
+<p>回忆一元函数求极值，如果 x 是极值点，且f&#8217;(x) 存在，则f&#8217;(x)必为0（或不可导点），但反过来导数为0的点不一定是极值点，此为一元函数极值的必要条件。</p>
+<p>多元函数极值的必要条件也类似，以二元函数为例，设 z=f(x,y) 在某点取得极值，则该点处的梯度必为零向量，既每个偏导数都为零。</p>
+<p>另外，定义梯度为零向量的点为多元函数的驻点。具有偏导数的多元函数的极值点必定是驻点，但驻点不一定是极值点。非极值点的驻点称为鞍点。</p>
+</div>
+<div class="section" id="id9">
+<h3><a class="toc-backref" href="#id22">4.2 极值的充分条件</a><a class="headerlink" href="#id9" title="永久链接至标题">¶</a></h3>
+<p>回忆一元函数求极值的过程：
+如果 f(x) 在 x0 处具有二阶导数且 f&#8217;(x0)=0, f&#8217;&#8216;(x0)!=0，则：</p>
+<ol class="arabic simple">
+<li>当 f&#8217;&#8216;(x0)&lt;0 时，函数在该点取得极大值（因为函数在该段区间是向上凸的）</li>
+<li>当 f&#8217;&#8216;(x0)&gt;0 时，函数在该点取得极小值（因为函数在该段区间是向上凹的）</li>
+</ol>
+<p>类似的，二元函数求极值过程如下：</p>
+<img alt="_images/多元函数极值1.png" src="_images/多元函数极值1.png" />
+<img alt="_images/多元函数极值2.png" src="_images/多元函数极值2.png" />
+</div>
+</div>
+<div class="section" id="id10">
+<h2><a class="toc-backref" href="#id23">5. 多元函数求导</a><a class="headerlink" href="#id10" title="永久链接至标题">¶</a></h2>
+<div class="section" id="jacobian">
+<h3><a class="toc-backref" href="#id24">5.1 Jacobian矩阵</a><a class="headerlink" href="#jacobian" title="永久链接至标题">¶</a></h3>
+<p>将一个由m个函数组成的列向量，对输入向量 x=(x1,x2...xn)求导，则结果是一个一阶偏导数组成的矩阵，这样的矩阵称为雅克比矩阵（Jacobian）</p>
+<img alt="_images/雅克比矩阵1.png" src="_images/雅克比矩阵1.png" />
+<p>例如，对下列函数求导的结果是：</p>
+<img alt="_images/雅克比矩阵2.png" src="_images/雅克比矩阵2.png" />
+</div>
+<div class="section" id="hessian">
+<h3><a class="toc-backref" href="#id25">5.2 Hessian矩阵</a><a class="headerlink" href="#hessian" title="永久链接至标题">¶</a></h3>
+<p>Hessian矩阵是由目标函数 f(x) 在点x处的二阶偏导数组成的n阶对称矩阵。函数在 x0 处的 Hessian 矩阵如下：</p>
+<img alt="_images/海森矩阵1.png" src="_images/海森矩阵1.png" />
+<p>存在如下结论：</p>
+<p>当G是正定矩阵时，函数f在X0处有极小值
+当G是负定矩阵时，函数f在X0处有极大值
+当G是不定矩阵时，函数f在X0不是极值点</p>
+<p>Hession矩阵可以作为二阶泰勒级数在多元下的展开，因此可以使用在牛顿法求极值。</p>
+</div>
+<div class="section" id="id11">
+<h3><a class="toc-backref" href="#id26">5.3 常用的函数求导等式</a><a class="headerlink" href="#id11" title="永久链接至标题">¶</a></h3>
+<img alt="_images/函数求导等式.png" src="_images/函数求导等式.png" />
+<p class="rubric">References</p>
+<table class="docutils footnote" frame="void" id="id12" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label">[1]</td><td>《高等数学（第六版）》同济大学数学系 编，高等教育出版社</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id13" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label">[2]</td><td>《Mathematics for Machine Learning》, Marc Peter Deisenroth、A Aldo Faisal, Cheng Soon Ong, Cambridge University Press. <a class="reference external" href="https://mml-book.com">https://mml-book.com</a></td></tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="线性代数.html" class="btn btn-neutral float-right" title="线性代数" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="单变量微积分.html" class="btn btn-neutral" title="单变量微积分 Calculus Part1" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Eamon_Zhang.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'0.1',
+            LANGUAGE:'zh_CN',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="_static/translations.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

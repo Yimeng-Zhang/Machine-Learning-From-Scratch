@@ -32,7 +32,8 @@ Eamon's 机器学习资料库
     :caption: 数学基础 Math
     :maxdepth: 1
 
-    微积分 Calculus (InProcess)  <微积分>
+    单变量微积分 Calculus P1 <单变量微积分>
+    多变量微积分 Calculus P2 <多变量微积分>
     线性代数 Linear Algebra (InProcess)   <线性代数>
     概率论 Probability (TODO)  <概率论>
     统计 Stats (TODO)  <统计>
