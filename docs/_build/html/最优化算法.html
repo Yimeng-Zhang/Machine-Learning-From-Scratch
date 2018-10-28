@@ -1,0 +1,443 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="zh-CN" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="zh-CN" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>最优化算法 &mdash; Machine Learning From Scratch 0.1 文档</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="索引" href="genindex.html" />
+    <link rel="search" title="搜索" href="search.html" />
+    <link rel="next" title="模型调优" href="模型调优.html" />
+    <link rel="prev" title="概率论" href="统计学.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Machine Learning From Scratch
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">数据处理 Data Processing</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="数据探索.html">数据探索 Data Exploration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="特征清洗.html">特征清洗 Feature Cleaning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="特征缩放.html">特征缩放 Feature Scaling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="特征工程.html">特征工程 Feature Engineering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="特征选择.html">特征选择 (InProcess)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="特征学习.html">特征学习 (TODO)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="数据集构造.html">数据集构造 (TODO)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="特征监控.html">特征监控 (TODO)</a></li>
+</ul>
+<p class="caption"><span class="caption-text">数学基础 Math</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="单变量微积分.html">单变量微积分 Calculus P1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="多变量微积分.html">多变量微积分 Calculus P2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="线性代数.html">线性代数 Linear Algebra (InProcess)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="概率论.html">概率论 Probability (InProcess)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="统计学.html">统计 Stats (TODO)</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">最优化算法 (TODO)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#gradient-descent">1. 梯度下降法 Gradient Descent</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#batch-gradient-descent-bgd">1.1 批量梯度下降法（Batch Gradient Descent，BGD）</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#stochastic-gradient-descent-sgd">1.2 随机梯度下降（Stochastic Gradient Descent，SGD）</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#mini-batch-gradient-descent-mbgd">1.3 批量梯度下降法（Mini-batch Gradient Descent，MBGD）</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id2">2. 牛顿法和拟牛顿法</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id3">2.1 牛顿法</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id4">2.1.1 用于方程求解</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id5">2.1.2 用于最优化</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id6">2.2 拟牛顿法</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#conjugate-gradient">3. 共轭梯度法 Conjugate Gradient</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id7">4. 启发式优化方法</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id8">5. 拉格朗日乘数法</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id9">5.1 基本思想</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id10">5.2 示例</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id11">5.3 拉格朗日乘数法的基本形态</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">机器学习算法 Algorithm</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="模型调优.html">模型调优 (TODO)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="模型评估.html">模型评估 (TODO)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="正则化.html">正则化 (TODO)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="损失函数.html">损失函数 Loss Function (TODO)</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Machine Learning From Scratch</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>最优化算法</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/最优化算法.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="id1">
+<h1>最优化算法<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h1>
+<div class="contents local topic" id="contents">
+<ul class="simple">
+<li><a class="reference internal" href="#gradient-descent" id="id14">1. 梯度下降法 Gradient Descent</a><ul>
+<li><a class="reference internal" href="#batch-gradient-descent-bgd" id="id15">1.1 批量梯度下降法（Batch Gradient Descent，BGD）</a></li>
+<li><a class="reference internal" href="#stochastic-gradient-descent-sgd" id="id16">1.2 随机梯度下降（Stochastic Gradient Descent，SGD）</a></li>
+<li><a class="reference internal" href="#mini-batch-gradient-descent-mbgd" id="id17">1.3 批量梯度下降法（Mini-batch Gradient Descent，MBGD）</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id2" id="id18">2. 牛顿法和拟牛顿法</a><ul>
+<li><a class="reference internal" href="#id3" id="id19">2.1 牛顿法</a><ul>
+<li><a class="reference internal" href="#id4" id="id20">2.1.1 用于方程求解</a></li>
+<li><a class="reference internal" href="#id5" id="id21">2.1.2 用于最优化</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id6" id="id22">2.2 拟牛顿法</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#conjugate-gradient" id="id23">3. 共轭梯度法 Conjugate Gradient</a></li>
+<li><a class="reference internal" href="#id7" id="id24">4. 启发式优化方法</a></li>
+<li><a class="reference internal" href="#id8" id="id25">5. 拉格朗日乘数法</a><ul>
+<li><a class="reference internal" href="#id9" id="id26">5.1 基本思想</a></li>
+<li><a class="reference internal" href="#id10" id="id27">5.2 示例</a></li>
+<li><a class="reference internal" href="#id11" id="id28">5.3 拉格朗日乘数法的基本形态</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<p>训练机器学习算法很多时候本质上就是寻找一组最佳参数的过程，最佳是由目标函数或概率模型决定。给定了目标函数，我们通过优化算法找到最佳的值。</p>
+<div class="section" id="gradient-descent">
+<h2><a class="toc-backref" href="#id14">1. 梯度下降法 Gradient Descent</a><a class="headerlink" href="#gradient-descent" title="永久链接至标题">¶</a></h2>
+<p>梯度下降法是最常用的最优算法之一。当目标函数是凸函数时，梯度下降法的解是全局解。一般情况下，其解不保证是全局最优解，梯度下降法的速度也未必是最快的。我们还需要假设函数是可微的，否则无法获得封闭解（即给出任意的自变量就可以求出其因变量）。</p>
+<p>梯度下降法是一阶优化算法（因为只利用到了函数的一阶导数信息），其思想是用当前位置负梯度方向作为搜索方向，移动与当前位置负梯度成比例的一段步长。因为该方向为当前位置的最快下降方向，所以也被称为是最速下降法。梯度下降法的公式：</p>
+<img alt="_images/梯度下降2.png" src="_images/梯度下降2.png" />
+<p>伪代码：</p>
+<img alt="_images/梯度下降3.png" src="_images/梯度下降3.png" />
+<p>梯度下降法有两个缺点，一是靠近最优解的区域收敛速度明显变慢，二是固定学习率的情况下，可能在某点附近出现震荡，如下图表示的二维函数</p>
+<img alt="_images/梯度下降4.png" src="_images/梯度下降4.png" />
+<p>在固定学习率的情况下，两种不同的学习率分别迭代20次的结果，起始点(x1,x2)=(0,0),最小值点(x1,x2)=(1,1)</p>
+<img alt="_images/梯度下降5.png" src="_images/梯度下降5.png" />
+<p>可以看到如果学习率（步长）太小，随着迭代的增加，每次移动的距离越来越小，甚至难以逼近最优值，学习率太大，移动的轨迹在某值附近开始震荡，类似“之”形移动。对于这些缺点，可以通过使用可变学习率的方法优化，例如线性搜索等方法，每次迭代前寻找最优的学习率，再进行迭代；</p>
+<p>基于基本的梯度下降法发展了几种梯度下降方法。</p>
+<div class="section" id="batch-gradient-descent-bgd">
+<h3><a class="toc-backref" href="#id15">1.1 批量梯度下降法（Batch Gradient Descent，BGD）</a><a class="headerlink" href="#batch-gradient-descent-bgd" title="永久链接至标题">¶</a></h3>
+<p>批量梯度下降法是梯度下降法最原始的形式，它的具体思路是在更新每一参数时都使用所有的样本来进行更新。</p>
+<p>优点：全局最优解；易于并行实现；
+缺点：当样本数目很多时，训练过程会很慢。</p>
+</div>
+<div class="section" id="stochastic-gradient-descent-sgd">
+<h3><a class="toc-backref" href="#id16">1.2 随机梯度下降（Stochastic Gradient Descent，SGD）</a><a class="headerlink" href="#stochastic-gradient-descent-sgd" title="永久链接至标题">¶</a></h3>
+<p>随机梯度下降的思路是在每次迭代时，只使用一个样本，当样本个数很大的时候，随机梯度下降迭代一次的速度要远高于批量梯度下降方法。两者的关系可以这样理解：随机梯度下降方法以损失一部分精确度和增加一定数量的迭代次数为代价，换取了总体的优化效率的提升。增加的迭代次数远远小于样本的数量。如果样本量很大的情况（例如几十万），那么可能只用其中几万条或者几千条的样本，就已经迭代到最优解了。</p>
+<p>优点：训练速度快；
+缺点：准确度下降，并不是全局最优。</p>
+<p>对批量梯度下降法和随机梯度下降法的总结：</p>
+<p>批量梯度下降&#8212;最小化所有训练样本的损失函数，使得最终求解的是全局的最优解，即求解的参数是使得风险函数最小，但是对于大规模样本问题效率低下。</p>
+<p>随机梯度下降&#8212;最小化每条样本的损失函数，虽然不是每次迭代得到的损失函数都向着全局最优方向，但是大的整体的方向是向全局最优解的，最终的结果往往是在全局最优解附近，适用于大规模训练样本情况。</p>
+</div>
+<div class="section" id="mini-batch-gradient-descent-mbgd">
+<h3><a class="toc-backref" href="#id17">1.3 批量梯度下降法（Mini-batch Gradient Descent，MBGD）</a><a class="headerlink" href="#mini-batch-gradient-descent-mbgd" title="永久链接至标题">¶</a></h3>
+<p>它的具体思路是在更新每一参数时都使用一部分样本（batch）来进行更新，可以选择对每个 batch 的梯度进行累加，或者取平均值。取平均值可以减少梯度的方差。可以看出该方法克服了上面两种方法的缺点，又同时兼顾两种方法的优点，是如今深度学习领域最常见的实现方式。</p>
+</div>
+</div>
+<div class="section" id="id2">
+<h2><a class="toc-backref" href="#id18">2. 牛顿法和拟牛顿法</a><a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h2>
+<div class="section" id="id3">
+<h3><a class="toc-backref" href="#id19">2.1 牛顿法</a><a class="headerlink" href="#id3" title="永久链接至标题">¶</a></h3>
+<p>上节介绍的梯度下降法只用到了目标函数的一阶导数，牛顿法是一种二阶优化算法，其核心思想是对函数进行泰勒展开。</p>
+<div class="section" id="id4">
+<h4><a class="toc-backref" href="#id20">2.1.1 用于方程求解</a><a class="headerlink" href="#id4" title="永久链接至标题">¶</a></h4>
+<p>求解方程 f(x) = 0 的解：</p>
+<ol class="arabic simple">
+<li>选择一个接近函数f(x)=0 处的 x0，计算相应的f (x0) 和切线斜率f′(x0)</li>
+<li>计算过点(x0,f(x0)) 并且斜率为f′(x0) 的直线和 X 轴的交点的 x 坐标，也就是求如下方程的解：f(x0)+f′(x0)∗(x−x0)=0</li>
+<li>将新求得的点的 x 坐标命名为 x1，通常 x1 会比 x0 更接近方程f(x) = 0 的解。因此我们现在可以利用 x1 开始下一轮迭代。迭代公式可化简为如下所示：</li>
+</ol>
+<img alt="_images/牛顿法1.png" src="_images/牛顿法1.png" />
+<p>由于牛顿法是基于当前位置的切线来确定下一次的位置，所以牛顿法又被很形象地称为是&#8221;切线法&#8221;。</p>
+<img alt="_images/牛顿法2.gif" src="_images/牛顿法2.gif" />
+<p>或者这张图，更好理解：</p>
+<img alt="_images/牛顿法3.png" src="_images/牛顿法3.png" />
+<p>已经证明，如果f&#8217;是连续的，并且待求的零点x是孤立的，那么在零点x周围存在一个区域，只要初始值 x0 位于这个邻近区域内，那么牛顿法必定收敛。 并且，如果f&#8217;(x)不为0, 那么牛顿法将具有平方收敛的性能，这意味着每迭代一次，牛顿法结果的有效数字将增加一倍。</p>
+</div>
+<div class="section" id="id5">
+<h4><a class="toc-backref" href="#id21">2.1.2 用于最优化</a><a class="headerlink" href="#id5" title="永久链接至标题">¶</a></h4>
+<p>对于求模板书极大极小值的问题，可以转化为求函数f的导数为0的问题，这样问题就可以看成和方程求解一样的问题(f&#8217;=0)，与用牛顿法求解很相似了。</p>
+<ol class="arabic simple">
+<li>先对 f(x) 进行二阶泰勒公式展开</li>
+</ol>
+<img alt="_images/牛顿法5.jpg" src="_images/牛顿法5.jpg" />
+<ol class="arabic simple" start="2">
+<li>然后对 f(x) 求导，得到：</li>
+</ol>
+<img alt="_images/牛顿法6.jpg" src="_images/牛顿法6.jpg" />
+<p>注意，所有的 xk 和其导数都是已知的，视为常数项。</p>
+<ol class="arabic simple" start="3">
+<li>令 f&#8217;(x)=0 得到</li>
+</ol>
+<img alt="_images/牛顿法7.jpg" src="_images/牛顿法7.jpg" />
+<p>关于牛顿法和梯度下降法的效率对比：</p>
+<p>从本质上去看，牛顿法是二阶收敛，梯度下降是一阶收敛，所以牛顿法就更快。更通俗地说，比如你想找一条最短的路径走到一个盆地的最底部，梯度下降法每次只从你当前所处位置选一个坡度最大的方向走一步，牛顿法在选择方向时，不仅会考虑坡度是否够大，还会考虑你走了一步之后，坡度是否会变得更大（二阶导数信息）。所以，可以说牛顿法比梯度下降法看得更远一点，能更快地走到最底部。（牛顿法目光更加长远，所以少走弯路；相对而言，梯度下降法只考虑了局部的最优，没有全局思想。）</p>
+<p>从几何上说，牛顿法就是用一个二次曲面去拟合你当前所处位置的局部曲面，而梯度下降法是用一个平面去拟合当前的局部曲面，通常情况下，二次曲面的拟合会比平面更好，所以牛顿法选择的下降路径会更符合真实的最优下降路径。</p>
+<p>牛顿法的优缺点总结：</p>
+<p>优点：二阶收敛，收敛速度快；
+缺点：牛顿法是一种迭代算法，每一步都需要求解目标函数的Hessian矩阵的逆矩阵，计算比较复杂。</p>
+<p>因此，如果在目标函数的梯度和Hessian矩阵比较好求的时候应使用Newton法。当模型的参数很多时Hessian矩阵的计算成本将会很大，导致收敛速度变慢，所以在深度学习中也很少使用牛顿法。</p>
+</div>
+</div>
+<div class="section" id="id6">
+<h3><a class="toc-backref" href="#id22">2.2 拟牛顿法</a><a class="headerlink" href="#id6" title="永久链接至标题">¶</a></h3>
+<p>拟牛顿法是求解非线性优化问题最有效的方法之一，于20世纪50年代由美国Argonne国家实验室的物理学家W.C.Davidon所提出来。Davidon设计的这种算法在当时看来是非线性优化领域最具创造性的发明之一。不久R. Fletcher和M. J. D. Powell证实了这种新的算法远比其他方法快速和可靠，使得非线性优化这门学科在一夜之间突飞猛进。</p>
+<p>拟牛顿法的本质思想是改善牛顿法每次需要求解复杂的Hessian矩阵的逆矩阵的缺陷，它使用正定矩阵来近似Hessian矩阵的逆，从而简化了运算的复杂度。拟牛顿法和最速下降法一样只要求每一步迭代时知道目标函数的梯度。通过测量梯度的变化，构造一个目标函数的模型使之足以产生超线性收敛性。这类方法大大优于最速下降法，尤其对于困难的问题。另外，因为拟牛顿法不需要二阶导数的信息，所以有时比牛顿法更为有效。如今，优化软件中包含了大量的拟牛顿算法用来解决无约束，约束，和大规模的优化问题。</p>
+<p>牛顿法在基础机器学习中有用到，但在深度学习中很少用。这里不做展开。</p>
+</div>
+</div>
+<div class="section" id="conjugate-gradient">
+<h2><a class="toc-backref" href="#id23">3. 共轭梯度法 Conjugate Gradient</a><a class="headerlink" href="#conjugate-gradient" title="永久链接至标题">¶</a></h2>
+<p>共轭梯度法是介于最速下降法与牛顿法之间的一个方法，它仅需利用一阶导数信息，但克服了最速下降法收敛慢的缺点，又避免了牛顿法需要存储和计算Hesse矩阵并求逆的缺点，共轭梯度法不仅是解决大型线性方程组最有用的方法之一，也是解大型非线性最优化最有效的算法之一。 在各种优化算法中，共轭梯度法是非常重要的一种。其优点是所需存储量小，具有步收敛性，稳定性高，而且不需要任何外来参数。</p>
+<p>具体过程暂略。</p>
+</div>
+<div class="section" id="id7">
+<h2><a class="toc-backref" href="#id24">4. 启发式优化方法</a><a class="headerlink" href="#id7" title="永久链接至标题">¶</a></h2>
+<p>启发式方法指人在解决问题时所采取的一种根据经验规则进行发现的方法。其特点是在解决问题时,利用过去的经验,选择已经行之有效的方法，而不是系统地、以确定的步骤去寻求答案。启发式优化方法种类繁多，包括经典的模拟退火方法、遗传算法、蚁群算法以及粒子群算法等等。</p>
+<p>还有一种特殊的优化算法被称之多目标优化算法，它主要针对同时优化多个目标（两个及两个以上）的优化问题，这方面比较经典的算法有NSGAII算法、MOEA/D算法以及人工免疫算法等。</p>
+<p>具体的几种方法介绍可参考： <a class="reference external" href="http://www.cnblogs.com/maybe2030/p/4665837.html">http://www.cnblogs.com/maybe2030/p/4665837.html</a></p>
+</div>
+<div class="section" id="id8">
+<h2><a class="toc-backref" href="#id25">5. 拉格朗日乘数法</a><a class="headerlink" href="#id8" title="永久链接至标题">¶</a></h2>
+<div class="section" id="id9">
+<h3><a class="toc-backref" href="#id26">5.1 基本思想</a><a class="headerlink" href="#id9" title="永久链接至标题">¶</a></h3>
+<p>拉格朗日乘数法主要用于解决 <strong>带约束</strong> 的优化问题，基本的拉格朗日乘数法，就是求函数 f(x1,x2,...) 在 g(x1,x2,...)=C 的约束条件下的极值的方法。其主要思想是引入一个新的参数 λ （即拉格朗日乘子），将约束条件函数与原函数联系到一起，使能配成与变量数量相等的等式方程，从而求出得到原函数极值的各个变量的解。</p>
+</div>
+<div class="section" id="id10">
+<h3><a class="toc-backref" href="#id27">5.2 示例</a><a class="headerlink" href="#id10" title="永久链接至标题">¶</a></h3>
+<p>求双曲线函数 xy=3 上距离原点最近的点的坐标。</p>
+<p>设(x,y) 是函数上的任意一点，则距离原点的距离为：</p>
+<div class="math">
+\[ \begin{align}\begin{aligned} f(x,y) =  \sqrt{(x^2 + y^2)}\\求距离最近的点即求 f(x,y) 的最小值，我们用其平方来替代。\\.. math::\\ f(x,y) =  \(x^2 + y^2)\\同时需要满足的限制条件是：\\.. math::\\ g(x,y) =  xy = 3\\ 用等高线来可视化这个问题：\end{aligned}\end{align} \]</div>
+<img alt="_images/拉格朗日数乘1.png" src="_images/拉格朗日数乘1.png" />
+<p>明显，两个函数的曲线相切的点就是我们要求的点。如果把双曲线看作自身的等高线，那么两个等高线相切时，二者在切点处的切线也相同，也就是说它们的梯度向量平行，即：</p>
+<img alt="_images/拉格朗日乘数2.png" src="_images/拉格朗日乘数2.png" />
+<p>如果两个向量平行，则其中一个梯度向量可以写为另一个的常数倍：</p>
+<img alt="_images/拉格朗日乘数3.png" src="_images/拉格朗日乘数3.png" />
+<p>这样，我们把问题转化为了一个含有3个未知变量的方程组：</p>
+<img alt="_images/拉格朗日乘数4.png" src="_images/拉格朗日乘数4.png" />
+<p>到这里，已经可以用最简单的代入法求解了。这个方程组就称为拉格朗日方程组。λ 就是拉格朗日乘子。</p>
+<p>拉格朗日乘数法并不会告诉我们最值的类型，结果可能是最大值、最小值或鞍点，那么如何判断是最大值还是最小值呢？只能通过将拉格朗日方程组的解代入问题方程来判断。</p>
+</div>
+<div class="section" id="id11">
+<h3><a class="toc-backref" href="#id28">5.3 拉格朗日乘数法的基本形态</a><a class="headerlink" href="#id11" title="永久链接至标题">¶</a></h3>
+<p>求函数 f(x,y) 在满足 g(x,y)=0 下的条件极值，可以转化为函数 F(x,y,λ) = f(x,y) + λg(x,y) 的无条件极值问题。可以用下图来帮助理解：</p>
+<img alt="_images/拉格朗日乘数5.png" src="_images/拉格朗日乘数5.png" />
+<p>绿线标出的是约束 g(x,y)=c 的点的轨迹。蓝线是 f(x,y) 的等高线。箭头表示斜率，和等高线的法线平行。在最优解处，f 和 g 的斜率平行，梯度向量也平行。通过对 F(x,y,λ) 求偏导，即可得到方程组的解。</p>
+<p class="rubric">References</p>
+<table class="docutils footnote" frame="void" id="id12" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label">[1]</td><td>常见的几种最优化方法 <a class="reference external" href="https://www.cnblogs.com/maybe2030/p/4751804.html">https://www.cnblogs.com/maybe2030/p/4751804.html</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id13" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label">[2]</td><td>机器学习——优化算法：牛顿法-初探 <a class="reference external" href="https://blog.csdn.net/u013793732/article/details/79575507">https://blog.csdn.net/u013793732/article/details/79575507</a></td></tr>
+</tbody>
+</table>
+<p>..最小二乘法-线性回归
+.. <a class="reference external" href="https://www.cnblogs.com/bigmonkey/p/8305145.html">https://www.cnblogs.com/bigmonkey/p/8305145.html</a></p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="模型调优.html" class="btn btn-neutral float-right" title="模型调优" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="统计学.html" class="btn btn-neutral" title="概率论" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Eamon_Zhang.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'0.1',
+            LANGUAGE:'zh_CN',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="_static/translations.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

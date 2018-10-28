@@ -26,7 +26,6 @@ Eamon's 机器学习资料库
     特征学习 (TODO) <特征学习>
     数据集构造 (TODO) <数据集构造>
     特征监控 (TODO) <特征监控>
-    How to contribute <contribute>
 
 .. toctree::
     :caption: 数学基础 Math
@@ -35,17 +34,16 @@ Eamon's 机器学习资料库
     单变量微积分 Calculus P1 <单变量微积分>
     多变量微积分 Calculus P2 <多变量微积分>
     线性代数 Linear Algebra (InProcess)   <线性代数>
-    概率论 Probability (TODO)  <概率论>
-    统计 Stats (TODO)  <统计>
-    最优化理论/凸分析 (TODO) <最优化理论>
+    概率论 Probability (InProcess)  <概率论>
+    统计学 Stats (TODO)  <统计学>
+    最优化算法 (TODO) <最优化算法>
     
 .. toctree::
     :caption: 机器学习算法 Algorithm
     :maxdepth: 1
 
     模型调优 (TODO) <模型调优>
-    优化算法 (TODO) <优化算法>
-    模型评估 (TODO) <模型评估>
+    表现评估 (TODO) <表现评估>
     正则化 (TODO) <正则化>
     损失函数 Loss Function (TODO) <损失函数>
 

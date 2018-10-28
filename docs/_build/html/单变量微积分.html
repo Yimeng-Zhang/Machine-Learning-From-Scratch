@@ -146,23 +146,24 @@
 <li class="toctree-l3"><a class="reference internal" href="#id32">4.4 凹凸性的判定方法</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#id33">4.5 曲线的拐点</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#id34">4.6 函数极值、最大值与最小值</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#fermat-s-theorem">4.6.1 费马引理（Fermat&#8217;s Theorem）</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id35">4.6.2 如何寻找函数极值点</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id35">4.6.1 基本概念</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#fermat-s-theorem">4.6.2 费马引理（Fermat&#8217;s Theorem）</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id36">4.6.3 如何寻找函数极值点</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#id36">5. 泰勒公式</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id37">5.1 问题由来</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id38">5.2 泰勒公式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id37">5. 泰勒公式</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id38">5.1 问题由来</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id39">5.2 泰勒公式</a></li>
 </ul>
 </li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="多变量微积分.html">多变量微积分 Calculus P2</a></li>
 <li class="toctree-l1"><a class="reference internal" href="线性代数.html">线性代数 Linear Algebra (InProcess)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="概率论.html">概率论 Probability (TODO)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="统计.html">统计 Stats (TODO)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="概率论.html">概率论 Probability (InProcess)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="统计学.html">统计 Stats (TODO)</a></li>
 </ul>
 <p class="caption"><span class="caption-text">机器学习算法 Algorithm</span></p>
 <ul>
@@ -239,113 +240,114 @@
 <h1>单变量微积分 Calculus Part1<a class="headerlink" href="#calculus-part1" title="永久链接至标题">¶</a></h1>
 <div class="contents local topic" id="contents">
 <ul class="simple">
-<li><a class="reference internal" href="#id1" id="id43">1. 微积分简介</a></li>
-<li><a class="reference internal" href="#id2" id="id44">2. 函数与极限</a><ul>
-<li><a class="reference internal" href="#id3" id="id45">2.1 映射与函数</a></li>
-<li><a class="reference internal" href="#id4" id="id46">2.2 极限的定义</a></li>
-<li><a class="reference internal" href="#id5" id="id47">2.3 左极限与右极限</a></li>
-<li><a class="reference internal" href="#id6" id="id48">2.4 极限的运算法则</a></li>
-<li><a class="reference internal" href="#id7" id="id49">2.5 在正负无穷大处的极限</a></li>
-<li><a class="reference internal" href="#id8" id="id50">2.6 函数的连续性与间断点</a><ul>
-<li><a class="reference internal" href="#id9" id="id51">2.6.1 函数的连续性</a></li>
-<li><a class="reference internal" href="#id10" id="id52">2.6.2 函数的间断点</a></li>
-<li><a class="reference internal" href="#id11" id="id53">2.6.3 介值定理</a></li>
+<li><a class="reference internal" href="#id1" id="id44">1. 微积分简介</a></li>
+<li><a class="reference internal" href="#id2" id="id45">2. 函数与极限</a><ul>
+<li><a class="reference internal" href="#id3" id="id46">2.1 映射与函数</a></li>
+<li><a class="reference internal" href="#id4" id="id47">2.2 极限的定义</a></li>
+<li><a class="reference internal" href="#id5" id="id48">2.3 左极限与右极限</a></li>
+<li><a class="reference internal" href="#id6" id="id49">2.4 极限的运算法则</a></li>
+<li><a class="reference internal" href="#id7" id="id50">2.5 在正负无穷大处的极限</a></li>
+<li><a class="reference internal" href="#id8" id="id51">2.6 函数的连续性与间断点</a><ul>
+<li><a class="reference internal" href="#id9" id="id52">2.6.1 函数的连续性</a></li>
+<li><a class="reference internal" href="#id10" id="id53">2.6.2 函数的间断点</a></li>
+<li><a class="reference internal" href="#id11" id="id54">2.6.3 介值定理</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a class="reference internal" href="#id12" id="id54">3. 导数</a><ul>
-<li><a class="reference internal" href="#id13" id="id55">3.1 如何理解导数</a></li>
-<li><a class="reference internal" href="#id14" id="id56">3.2 导数的计算</a></li>
-<li><a class="reference internal" href="#id15" id="id57">3.3 导数的定义</a></li>
-<li><a class="reference internal" href="#id16" id="id58">3.4 求导法则与求导公式</a></li>
-<li><a class="reference internal" href="#chain-rule" id="id59">3.5 复合函数的求导法则: 链式法则 Chain Rule</a></li>
-<li><a class="reference internal" href="#id17" id="id60">3.6 高阶导数</a></li>
-<li><a class="reference internal" href="#id18" id="id61">3.7 平面曲线的切线与法线</a></li>
-<li><a class="reference internal" href="#id19" id="id62">3.8 几个重要的中值定理</a><ul>
-<li><a class="reference internal" href="#id20" id="id63">3.7.1 罗尔定理</a></li>
-<li><a class="reference internal" href="#id21" id="id64">3.7.2 拉格朗日中值定理</a></li>
-<li><a class="reference internal" href="#id22" id="id65">3.7.3 柯西中值定理</a></li>
+<li><a class="reference internal" href="#id12" id="id55">3. 导数</a><ul>
+<li><a class="reference internal" href="#id13" id="id56">3.1 如何理解导数</a></li>
+<li><a class="reference internal" href="#id14" id="id57">3.2 导数的计算</a></li>
+<li><a class="reference internal" href="#id15" id="id58">3.3 导数的定义</a></li>
+<li><a class="reference internal" href="#id16" id="id59">3.4 求导法则与求导公式</a></li>
+<li><a class="reference internal" href="#chain-rule" id="id60">3.5 复合函数的求导法则: 链式法则 Chain Rule</a></li>
+<li><a class="reference internal" href="#id17" id="id61">3.6 高阶导数</a></li>
+<li><a class="reference internal" href="#id18" id="id62">3.7 平面曲线的切线与法线</a></li>
+<li><a class="reference internal" href="#id19" id="id63">3.8 几个重要的中值定理</a><ul>
+<li><a class="reference internal" href="#id20" id="id64">3.7.1 罗尔定理</a></li>
+<li><a class="reference internal" href="#id21" id="id65">3.7.2 拉格朗日中值定理</a></li>
+<li><a class="reference internal" href="#id22" id="id66">3.7.3 柯西中值定理</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#differentiation" id="id66">3.8 微分 Differentiation</a><ul>
-<li><a class="reference internal" href="#id23" id="id67">3.8.1 微分的定义</a></li>
+<li><a class="reference internal" href="#differentiation" id="id67">3.8 微分 Differentiation</a><ul>
+<li><a class="reference internal" href="#id23" id="id68">3.8.1 微分的定义</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#integration" id="id68">3.9 积分 Integration</a><ul>
-<li><a class="reference internal" href="#id24" id="id69">3.9.1 积分的几何意义</a></li>
-<li><a class="reference internal" href="#id25" id="id70">3.9.2 积分的计算</a></li>
-<li><a class="reference internal" href="#id26" id="id71">3.9.3 常用积分公式</a></li>
-<li><a class="reference internal" href="#id27" id="id72">3.9.4 微积分基本定理</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a class="reference internal" href="#id28" id="id73">4. 导数的应用</a><ul>
-<li><a class="reference internal" href="#id29" id="id74">4.1 函数的驻点</a></li>
-<li><a class="reference internal" href="#id30" id="id75">4.2 函数单调性的判定方法</a></li>
-<li><a class="reference internal" href="#id31" id="id76">4.3 曲线的凹凸性</a></li>
-<li><a class="reference internal" href="#id32" id="id77">4.4 凹凸性的判定方法</a></li>
-<li><a class="reference internal" href="#id33" id="id78">4.5 曲线的拐点</a></li>
-<li><a class="reference internal" href="#id34" id="id79">4.6 函数极值、最大值与最小值</a><ul>
-<li><a class="reference internal" href="#fermat-s-theorem" id="id80">4.6.1 费马引理（Fermat&#8217;s Theorem）</a></li>
-<li><a class="reference internal" href="#id35" id="id81">4.6.2 如何寻找函数极值点</a></li>
+<li><a class="reference internal" href="#integration" id="id69">3.9 积分 Integration</a><ul>
+<li><a class="reference internal" href="#id24" id="id70">3.9.1 积分的几何意义</a></li>
+<li><a class="reference internal" href="#id25" id="id71">3.9.2 积分的计算</a></li>
+<li><a class="reference internal" href="#id26" id="id72">3.9.3 常用积分公式</a></li>
+<li><a class="reference internal" href="#id27" id="id73">3.9.4 微积分基本定理</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a class="reference internal" href="#id36" id="id82">5. 泰勒公式</a><ul>
-<li><a class="reference internal" href="#id37" id="id83">5.1 问题由来</a></li>
-<li><a class="reference internal" href="#id38" id="id84">5.2 泰勒公式</a></li>
+<li><a class="reference internal" href="#id28" id="id74">4. 导数的应用</a><ul>
+<li><a class="reference internal" href="#id29" id="id75">4.1 函数的驻点</a></li>
+<li><a class="reference internal" href="#id30" id="id76">4.2 函数单调性的判定方法</a></li>
+<li><a class="reference internal" href="#id31" id="id77">4.3 曲线的凹凸性</a></li>
+<li><a class="reference internal" href="#id32" id="id78">4.4 凹凸性的判定方法</a></li>
+<li><a class="reference internal" href="#id33" id="id79">4.5 曲线的拐点</a></li>
+<li><a class="reference internal" href="#id34" id="id80">4.6 函数极值、最大值与最小值</a><ul>
+<li><a class="reference internal" href="#id35" id="id81">4.6.1 基本概念</a></li>
+<li><a class="reference internal" href="#fermat-s-theorem" id="id82">4.6.2 费马引理（Fermat&#8217;s Theorem）</a></li>
+<li><a class="reference internal" href="#id36" id="id83">4.6.3 如何寻找函数极值点</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id37" id="id84">5. 泰勒公式</a><ul>
+<li><a class="reference internal" href="#id38" id="id85">5.1 问题由来</a></li>
+<li><a class="reference internal" href="#id39" id="id86">5.2 泰勒公式</a></li>
 </ul>
 </li>
 </ul>
 </div>
 <div class="section" id="id1">
-<h2><a class="toc-backref" href="#id43">1. 微积分简介</a><a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h2>
+<h2><a class="toc-backref" href="#id44">1. 微积分简介</a><a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h2>
 <p>微积分最关键的概念，是帮助理解函数是如何随着时间而变化的（导数），以及如何计算一定时间内累计的总量（积分）。微积分帮助我们能用精确的语言来描述函数的这种性质。本章节将会尽量以简洁易懂的语言来讲解微积分中最核心的几个概念。</p>
 <p>另外，如果你抽象思维能力比较差，强烈推荐 3blue1brown 的教学视频。这个系列以非常直观、可视化的方式帮助人们理解微积分和其中各种公式的意义。哪怕是已经熟读微积分的朋友，看过这个视频系列也一定会有新的收获。</p>
 <p><strong>微积分与机器学习的联系</strong></p>
 <p>机器学习中很多优化算法会用到导数的概念。例如，梯度下降中会使用导数来决定是增加还是减小权重来使得目标函数到达极值。</p>
 </div>
 <div class="section" id="id2">
-<h2><a class="toc-backref" href="#id44">2. 函数与极限</a><a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h2>
+<h2><a class="toc-backref" href="#id45">2. 函数与极限</a><a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h2>
 <div class="section" id="id3">
-<h3><a class="toc-backref" href="#id45">2.1 映射与函数</a><a class="headerlink" href="#id3" title="永久链接至标题">¶</a></h3>
+<h3><a class="toc-backref" href="#id46">2.1 映射与函数</a><a class="headerlink" href="#id3" title="永久链接至标题">¶</a></h3>
 <p><strong>映射</strong>
 两个非空的集合A和B，如果存在一套法则f，使得A中的每个元素按照该法则都有Y中的唯一元素与其对应，则称f是A到B的映射。映射又称为算子。如果A、B是实数集（或其子集），则这个映射通常也称为函数。</p>
 <p><strong>函数</strong>
 函数描述了一组输入与输出之间的映射关系，对于每个输入，总有唯一的确定的输出与之对应。输入也称为自变量，输出称为因变量；自变量的有效取值范围记为定义域，因变量的全体元素构成的集合称为值域。</p>
 </div>
 <div class="section" id="id4">
-<h3><a class="toc-backref" href="#id46">2.2 极限的定义</a><a class="headerlink" href="#id4" title="永久链接至标题">¶</a></h3>
+<h3><a class="toc-backref" href="#id47">2.2 极限的定义</a><a class="headerlink" href="#id4" title="永久链接至标题">¶</a></h3>
 <img alt="_images/函数极限定义.png" src="_images/函数极限定义.png" />
 <p>通俗的讲，当自变量 x 的值无限接近于某个确定的数 a 的过程中（无论从 a 的左侧还是右侧接近），如果对应的函数值 f(x) 无限接近于某个确定的数值L，那么就说 L 是函数 f(x) 在 x 无限趋近于 a 时的极限。这个 a 可以是一个有限值，也可以是正负无穷大。</p>
 </div>
 <div class="section" id="id5">
-<h3><a class="toc-backref" href="#id47">2.3 左极限与右极限</a><a class="headerlink" href="#id5" title="永久链接至标题">¶</a></h3>
+<h3><a class="toc-backref" href="#id48">2.3 左极限与右极限</a><a class="headerlink" href="#id5" title="永久链接至标题">¶</a></h3>
 <p>和函数极限的定义相同，唯一区别是左极限只考虑 x 从左侧趋近于 a，右极限只考虑 x 从右侧趋近于 a。如果函数在某处存在极限，则其充分必要条件是函数在该处的左极限与右极限各自存在且相等。</p>
 </div>
 <div class="section" id="id6">
-<h3><a class="toc-backref" href="#id48">2.4 极限的运算法则</a><a class="headerlink" href="#id6" title="永久链接至标题">¶</a></h3>
+<h3><a class="toc-backref" href="#id49">2.4 极限的运算法则</a><a class="headerlink" href="#id6" title="永久链接至标题">¶</a></h3>
 <p>一些基本的函数极限运算法则。更详细具体的运算和求极限技巧可以参考任何一本高等数学或微积分教材。</p>
 <img alt="_images/极限运算性质.png" src="_images/极限运算性质.png" />
 <img alt="_images/极限运算性质2.png" src="_images/极限运算性质2.png" />
 </div>
 <div class="section" id="id7">
-<h3><a class="toc-backref" href="#id49">2.5 在正负无穷大处的极限</a><a class="headerlink" href="#id7" title="永久链接至标题">¶</a></h3>
+<h3><a class="toc-backref" href="#id50">2.5 在正负无穷大处的极限</a><a class="headerlink" href="#id7" title="永久链接至标题">¶</a></h3>
 <img alt="_images/无穷大处的极限.png" src="_images/无穷大处的极限.png" />
 </div>
 <div class="section" id="id8">
-<h3><a class="toc-backref" href="#id50">2.6 函数的连续性与间断点</a><a class="headerlink" href="#id8" title="永久链接至标题">¶</a></h3>
+<h3><a class="toc-backref" href="#id51">2.6 函数的连续性与间断点</a><a class="headerlink" href="#id8" title="永久链接至标题">¶</a></h3>
 <div class="section" id="id9">
-<h4><a class="toc-backref" href="#id51">2.6.1 函数的连续性</a><a class="headerlink" href="#id9" title="永久链接至标题">¶</a></h4>
+<h4><a class="toc-backref" href="#id52">2.6.1 函数的连续性</a><a class="headerlink" href="#id9" title="永久链接至标题">¶</a></h4>
 <p>设函数 f(x) 在点 x0 的某一个邻域内有定义，如果 x 趋近于 x0 时，f(x)的值趋近于 f(x0)，则称函数 f(x) 在点x0连续。或者说，当x的增量趋于0时，函数y对于的增量也趋于0，则函数在该点连续。在区间内的每一点都连续的函数，叫做该区间上的连续函数。</p>
 <p>从几何意义理解，连续函数的图像是一条连续不间断的曲线。</p>
 <p>基本初等函数在其定义域内都是连续的。包括：三角函数、指数函数、幂函数、对数函数等。</p>
 </div>
 <div class="section" id="id10">
-<h4><a class="toc-backref" href="#id52">2.6.2 函数的间断点</a><a class="headerlink" href="#id10" title="永久链接至标题">¶</a></h4>
+<h4><a class="toc-backref" href="#id53">2.6.2 函数的间断点</a><a class="headerlink" href="#id10" title="永久链接至标题">¶</a></h4>
 <dl class="docutils">
 <dt>符合下列3种情形之一：</dt>
 <dd><ul class="first last simple">
@@ -358,16 +360,16 @@
 <p>则函数在该点不连续，该点称为间断点。</p>
 </div>
 <div class="section" id="id11">
-<h4><a class="toc-backref" href="#id53">2.6.3 介值定理</a><a class="headerlink" href="#id11" title="永久链接至标题">¶</a></h4>
+<h4><a class="toc-backref" href="#id54">2.6.3 介值定理</a><a class="headerlink" href="#id11" title="永久链接至标题">¶</a></h4>
 <img alt="_images/介值定理.png" src="_images/介值定理.png" />
 <p>通俗的讲，设函数 f(x) 在闭区间 [a,b] 上连续，且在该区间的端点各自取值 f(a)=A, f(b)=B, 那么对于 A 和 B 之间的任意一个数 M，在开区间 (a,b) 内至少有一个点 c 使得 f(c)=M 。</p>
 </div>
 </div>
 </div>
 <div class="section" id="id12">
-<h2><a class="toc-backref" href="#id54">3. 导数</a><a class="headerlink" href="#id12" title="永久链接至标题">¶</a></h2>
+<h2><a class="toc-backref" href="#id55">3. 导数</a><a class="headerlink" href="#id12" title="永久链接至标题">¶</a></h2>
 <div class="section" id="id13">
-<h3><a class="toc-backref" href="#id55">3.1 如何理解导数</a><a class="headerlink" href="#id13" title="永久链接至标题">¶</a></h3>
+<h3><a class="toc-backref" href="#id56">3.1 如何理解导数</a><a class="headerlink" href="#id13" title="永久链接至标题">¶</a></h3>
 <p>导数的意义是，当一个变量（例如x）发生了微小的变化 dx 时，相应的另一个变量（例如y）的变化量 dy 与 dx 的比值，关键词是“微小的变化”。</p>
 <p>从物理学角度而言，我们可以把 dx 看作是极短的一段时间， dy 是物体做直线运动经过的距离，导数 dy/dx 即某时间点上直线运动的瞬时变化率（距离/时间）。从几何学角度而言，导数就是曲线某点处的切线的斜率。下面我们从几何学的角度探讨下导数的由来。</p>
 <p><strong>几何学的定义</strong></p>
@@ -387,7 +389,7 @@
 <p>的极限存在，则此极限就是该点处切线的斜率。</p>
 </div>
 <div class="section" id="id14">
-<h3><a class="toc-backref" href="#id56">3.2 导数的计算</a><a class="headerlink" href="#id14" title="永久链接至标题">¶</a></h3>
+<h3><a class="toc-backref" href="#id57">3.2 导数的计算</a><a class="headerlink" href="#id14" title="永久链接至标题">¶</a></h3>
 <p>我们以函数 <span class="math">\(f(x) = x^2\)</span> 为例看下导数的计算过程。计算某点切线的斜率和计算两点之间的斜率一样，只不过现在计算的是给定点和与它无限接近的另一个点之间的斜率。我们用 h 来表示这个无穷小的距离。</p>
 <ol class="arabic simple">
 <li>给定函数</li>
@@ -418,7 +420,7 @@
 <p>所以我们看到，对于二次函数 <span class="math">\(f(x) = x^2\)</span>, 在曲线上任何位置的斜率都等于 <span class="math">\(2x\)</span>.</p>
 </div>
 <div class="section" id="id15">
-<h3><a class="toc-backref" href="#id57">3.3 导数的定义</a><a class="headerlink" href="#id15" title="永久链接至标题">¶</a></h3>
+<h3><a class="toc-backref" href="#id58">3.3 导数的定义</a><a class="headerlink" href="#id15" title="永久链接至标题">¶</a></h3>
 <p>从上节的例子中，我们总结下在特定点处切线的斜率计算公式（即如下极限）</p>
 <div class="math">
 \[\lim_{h\to0}\frac{f(x+h) - f(x)}{h}\]</div>
@@ -430,12 +432,12 @@
 <img alt="_images/理解导数.png" src="_images/理解导数.png" />
 </div>
 <div class="section" id="id16">
-<h3><a class="toc-backref" href="#id58">3.4 求导法则与求导公式</a><a class="headerlink" href="#id16" title="永久链接至标题">¶</a></h3>
+<h3><a class="toc-backref" href="#id59">3.4 求导法则与求导公式</a><a class="headerlink" href="#id16" title="永久链接至标题">¶</a></h3>
 <p>导数的几个基本法则，和几个基本初等函数的求导公式。</p>
 <img alt="_images/函数的求导法则.png" src="_images/函数的求导法则.png" />
 </div>
 <div class="section" id="chain-rule">
-<h3><a class="toc-backref" href="#id59">3.5 复合函数的求导法则: 链式法则 Chain Rule</a><a class="headerlink" href="#chain-rule" title="永久链接至标题">¶</a></h3>
+<h3><a class="toc-backref" href="#id60">3.5 复合函数的求导法则: 链式法则 Chain Rule</a><a class="headerlink" href="#chain-rule" title="永久链接至标题">¶</a></h3>
 <p>对于两个函数组合起来的复合函数，其导数等于里层函数值代入外层函数的导数，乘以里层函数的导数。</p>
 <p>更正式的定义： 如果 u=g(x) 在 x 处可导，而 y=f(u) 在点 u=g(x) 处可导，则复合函数 y=f[g(x)] 在点 x 处可导，其导数为
 f&#8217;(g(x))*g&#8217;(x)</p>
@@ -468,20 +470,20 @@ f'(x) &amp;= cos((4x)^2) \cdot 2(4x) \cdot 4 \\
 <img alt="_images/链式法则.png" src="_images/链式法则.png" />
 </div>
 <div class="section" id="id17">
-<h3><a class="toc-backref" href="#id60">3.6 高阶导数</a><a class="headerlink" href="#id17" title="永久链接至标题">¶</a></h3>
+<h3><a class="toc-backref" href="#id61">3.6 高阶导数</a><a class="headerlink" href="#id17" title="永久链接至标题">¶</a></h3>
 <p>f&#8217;(x) 是函数 f(x) 的一阶导数，对它再求导，即导数的导数叫做对 f(x) 的二阶导数，记作 f&#8217;&#8216;(x)，相应的还可以有更高阶的导数。高阶导数的写法如下图：</p>
 <img alt="_images/高阶导数.png" src="_images/高阶导数.png" />
 <p>从几何意义上理解，一阶导数是曲线上某点切线的斜率，二阶导数是斜率的变化率，三阶导数的变化率的变化率...以此类推，阶数越高，对该点及其附近的情况描述的越精细。</p>
 </div>
 <div class="section" id="id18">
-<h3><a class="toc-backref" href="#id61">3.7 平面曲线的切线与法线</a><a class="headerlink" href="#id18" title="永久链接至标题">¶</a></h3>
+<h3><a class="toc-backref" href="#id62">3.7 平面曲线的切线与法线</a><a class="headerlink" href="#id18" title="永久链接至标题">¶</a></h3>
 <p>过曲线上某点(x0,y0) 的切线和法线方程可以写为：</p>
 <img alt="_images/切线方程.png" src="_images/切线方程.png" />
 </div>
 <div class="section" id="id19">
-<h3><a class="toc-backref" href="#id62">3.8 几个重要的中值定理</a><a class="headerlink" href="#id19" title="永久链接至标题">¶</a></h3>
+<h3><a class="toc-backref" href="#id63">3.8 几个重要的中值定理</a><a class="headerlink" href="#id19" title="永久链接至标题">¶</a></h3>
 <div class="section" id="id20">
-<h4><a class="toc-backref" href="#id63">3.7.1 罗尔定理</a><a class="headerlink" href="#id20" title="永久链接至标题">¶</a></h4>
+<h4><a class="toc-backref" href="#id64">3.7.1 罗尔定理</a><a class="headerlink" href="#id20" title="永久链接至标题">¶</a></h4>
 <p>定理内容：如果 R 上的函数 f(x) 满足以下条件：
 （1）在闭区间 [a,b] 上连续
 （2）在开区间 (a,b) 内可导
@@ -491,7 +493,7 @@ f'(x) &amp;= cos((4x)^2) \cdot 2(4x) \cdot 4 \\
 <p>几何意义：若连续曲线 y=f(x) 在区间 [a,b] 上所对应的弧段 AB，除端点外处处具有不垂直于 x 轴的切线，且在弧的两个端点 A,B 处的纵坐标相等，则在弧 AB 上至少有一点 C，使曲线在C点处的切线平行于 x 轴。</p>
 </div>
 <div class="section" id="id21">
-<h4><a class="toc-backref" href="#id64">3.7.2 拉格朗日中值定理</a><a class="headerlink" href="#id21" title="永久链接至标题">¶</a></h4>
+<h4><a class="toc-backref" href="#id65">3.7.2 拉格朗日中值定理</a><a class="headerlink" href="#id21" title="永久链接至标题">¶</a></h4>
 <p>拉格朗日中值定理是罗尔中值定理的推广，它反映了可导函数在闭区间上的整体的平均变化率与区间内某点的局部变化率的关系。</p>
 <p>定理内容：如果函数 f(x) 满足：
 （1）在闭区间 [a,b] 上连续
@@ -502,7 +504,7 @@ f'(x) &amp;= cos((4x)^2) \cdot 2(4x) \cdot 4 \\
 <p>物理意义：对于直线运动，在任意一个运动过程中至少存在一个位置（或一个时刻）的瞬时速度等于这个过程中的平均速度。</p>
 </div>
 <div class="section" id="id22">
-<h4><a class="toc-backref" href="#id65">3.7.3 柯西中值定理</a><a class="headerlink" href="#id22" title="永久链接至标题">¶</a></h4>
+<h4><a class="toc-backref" href="#id66">3.7.3 柯西中值定理</a><a class="headerlink" href="#id22" title="永久链接至标题">¶</a></h4>
 <p>定理内容：如果函数 f(x) 及 F(x) 满足：</p>
 <p>（1）在闭区间 [a,b] 上连续
 （2）在开区间 (a,b) 上可导
@@ -514,9 +516,9 @@ f'(x) &amp;= cos((4x)^2) \cdot 2(4x) \cdot 4 \\
 </div>
 </div>
 <div class="section" id="differentiation">
-<h3><a class="toc-backref" href="#id66">3.8 微分 Differentiation</a><a class="headerlink" href="#differentiation" title="永久链接至标题">¶</a></h3>
+<h3><a class="toc-backref" href="#id67">3.8 微分 Differentiation</a><a class="headerlink" href="#differentiation" title="永久链接至标题">¶</a></h3>
 <div class="section" id="id23">
-<h4><a class="toc-backref" href="#id67">3.8.1 微分的定义</a><a class="headerlink" href="#id23" title="永久链接至标题">¶</a></h4>
+<h4><a class="toc-backref" href="#id68">3.8.1 微分的定义</a><a class="headerlink" href="#id23" title="永久链接至标题">¶</a></h4>
 <p>微分和导数的概念紧密相关。</p>
 <p>导数是指函数在某点处的 <strong>瞬时变化率</strong> （或者说该点切线的斜率），即 y 的增量与 x 的增量的比值的极限。</p>
 <p>微分是指函数在某点处的 <strong>变化量</strong> ，其定义是，如果函数在某点处的增量 △y 可以分解为 A△x 与 o(△x) 两部分的和（o(△x) 是关于△x的高阶无穷小），则前者（线性主部）称为在该点相对于自变量增量 △x 的微分，记为 dy，当 △x 非常小时，△y 的值可以由这个微分来近似替代，而忽略 o(△x) 部分。这个 A 就等于该点处的导数 f&#8217;(x)。在f&#8217;(x)!=0的条件下，我们可以用微分&nbsp;dy =&nbsp;f&#8217;(x)dx 来替代真正的增量 △y。</p>
@@ -527,9 +529,9 @@ f'(x) &amp;= cos((4x)^2) \cdot 2(4x) \cdot 4 \\
 </div>
 </div>
 <div class="section" id="integration">
-<h3><a class="toc-backref" href="#id68">3.9 积分 Integration</a><a class="headerlink" href="#integration" title="永久链接至标题">¶</a></h3>
+<h3><a class="toc-backref" href="#id69">3.9 积分 Integration</a><a class="headerlink" href="#integration" title="永久链接至标题">¶</a></h3>
 <div class="section" id="id24">
-<h4><a class="toc-backref" href="#id69">3.9.1 积分的几何意义</a><a class="headerlink" href="#id24" title="永久链接至标题">¶</a></h4>
+<h4><a class="toc-backref" href="#id70">3.9.1 积分的几何意义</a><a class="headerlink" href="#id24" title="永久链接至标题">¶</a></h4>
 <p>函数 f(x) 的积分就对应了函数 f(x) 图像与垂线 x=a, x=b 以及x轴围成的区域面积，如下图：</p>
 <img alt="_images/积分1.png" src="_images/积分1.png" />
 <p>a,b 两点称作积分的极限，符号  <span class="math">\(\int\)</span> 源于拉丁字母 summa（求和的意思），积分表示的就是函数 f(x) 在a,b 这两个极限下的值的总和。</p>
@@ -543,7 +545,7 @@ f'(x) &amp;= cos((4x)^2) \cdot 2(4x) \cdot 4 \\
 <img alt="_images/积分2.png" src="_images/积分2.png" />
 </div>
 <div class="section" id="id25">
-<h4><a class="toc-backref" href="#id70">3.9.2 积分的计算</a><a class="headerlink" href="#id25" title="永久链接至标题">¶</a></h4>
+<h4><a class="toc-backref" href="#id71">3.9.2 积分的计算</a><a class="headerlink" href="#id25" title="永久链接至标题">¶</a></h4>
 <p>那么如何计算这份面积呢？我们可以把函数图像下方的区域分割成很多微小的矩形，将矩形面积的和累加起来。例如下图是函数  <span class="math">\(f(x)=x^2\)</span> 在  <span class="math">\(x=1\)</span> 与  <span class="math">\(x=3\)</span> 围成的区域，我们以间距   <span class="math">\(h=0.5\)</span> 将这块区域切成4个矩形：</p>
 <img alt="_images/积分3.png" src="_images/积分3.png" />
 <p>如果将矩形切分的越细，我们就能得到越近似的估计。</p>
@@ -561,26 +563,26 @@ f'(x) &amp;= cos((4x)^2) \cdot 2(4x) \cdot 4 \\
 <p>可知，定积分是一个具体的数值（函数曲线与 x=a, x=b 以及x轴围成的区域面积）,而不定积分是个函数表达式。</p>
 </div>
 <div class="section" id="id26">
-<h4><a class="toc-backref" href="#id71">3.9.3 常用积分公式</a><a class="headerlink" href="#id26" title="永久链接至标题">¶</a></h4>
+<h4><a class="toc-backref" href="#id72">3.9.3 常用积分公式</a><a class="headerlink" href="#id26" title="永久链接至标题">¶</a></h4>
 <img alt="_images/积分5.png" src="_images/积分5.png" />
 </div>
 <div class="section" id="id27">
-<h4><a class="toc-backref" href="#id72">3.9.4 微积分基本定理</a><a class="headerlink" href="#id27" title="永久链接至标题">¶</a></h4>
+<h4><a class="toc-backref" href="#id73">3.9.4 微积分基本定理</a><a class="headerlink" href="#id27" title="永久链接至标题">¶</a></h4>
 <img alt="_images/积分6.png" src="_images/积分6.png" />
 <p>第一基本定理表明了一个连续函数一定能找到对应的积分形式的表达。 第二基本定理即牛顿-莱布尼茨公式，表明了定积分的值可以用其反导数（原函数）计算获得。</p>
 </div>
 </div>
 </div>
 <div class="section" id="id28">
-<h2><a class="toc-backref" href="#id73">4. 导数的应用</a><a class="headerlink" href="#id28" title="永久链接至标题">¶</a></h2>
+<h2><a class="toc-backref" href="#id74">4. 导数的应用</a><a class="headerlink" href="#id28" title="永久链接至标题">¶</a></h2>
 <div class="section" id="id29">
-<h3><a class="toc-backref" href="#id74">4.1 函数的驻点</a><a class="headerlink" href="#id29" title="永久链接至标题">¶</a></h3>
+<h3><a class="toc-backref" href="#id75">4.1 函数的驻点</a><a class="headerlink" href="#id29" title="永久链接至标题">¶</a></h3>
 <p>如果满足: f&#8217;(c)=0 ,则称 x=c 是函数 f(x) 的驻点。</p>
 <p>（有些教材也将不可导的点归为驻点）</p>
 <p>在驻点处，函数的一阶导数为0，此处的切线平行于 x 轴。</p>
 </div>
 <div class="section" id="id30">
-<h3><a class="toc-backref" href="#id75">4.2 函数单调性的判定方法</a><a class="headerlink" href="#id30" title="永久链接至标题">¶</a></h3>
+<h3><a class="toc-backref" href="#id76">4.2 函数单调性的判定方法</a><a class="headerlink" href="#id30" title="永久链接至标题">¶</a></h3>
 <p>设函数 f(x) 在区间 I 上连续且可导：</p>
 <blockquote>
 <div><ul class="simple">
@@ -591,7 +593,7 @@ f'(x) &amp;= cos((4x)^2) \cdot 2(4x) \cdot 4 \\
 </div></blockquote>
 </div>
 <div class="section" id="id31">
-<h3><a class="toc-backref" href="#id76">4.3 曲线的凹凸性</a><a class="headerlink" href="#id31" title="永久链接至标题">¶</a></h3>
+<h3><a class="toc-backref" href="#id77">4.3 曲线的凹凸性</a><a class="headerlink" href="#id31" title="永久链接至标题">¶</a></h3>
 <ul class="simple">
 <li>（向上）凸的曲线：在曲线上任取两点，连接这两点的弦总是位于曲线的下方（下图的曲线 ACB）</li>
 <li>（向上）凹的曲线：在曲线上任取两点，连接这两点的弦总是位于曲线的上方（下图的曲线 ADB）</li>
@@ -599,7 +601,7 @@ f'(x) &amp;= cos((4x)^2) \cdot 2(4x) \cdot 4 \\
 <img alt="_images/曲线凹凸.png" src="_images/曲线凹凸.png" />
 </div>
 <div class="section" id="id32">
-<h3><a class="toc-backref" href="#id77">4.4 凹凸性的判定方法</a><a class="headerlink" href="#id32" title="永久链接至标题">¶</a></h3>
+<h3><a class="toc-backref" href="#id78">4.4 凹凸性的判定方法</a><a class="headerlink" href="#id32" title="永久链接至标题">¶</a></h3>
 <p>设函数 f(x) 在区间 I 上连续且具有一阶和二阶导数：</p>
 <blockquote>
 <div><ul class="simple">
@@ -610,19 +612,27 @@ f'(x) &amp;= cos((4x)^2) \cdot 2(4x) \cdot 4 \\
 <p>如何理解：以二次函数  <span class="math">\(f(x) = x^2\)</span> 为例，其一阶导数等于 2x，其涵义即函数任何一点上的切线斜率，在 y轴右侧 2x的值恒 &gt;0，因此该函数在 y轴右侧的区间内是单调增加的，同理在 y轴左侧是单调递减的；其二阶导数等于2，其涵义即函数任何一点上的切线斜率的变化率，在整个函数定义域内二阶导数恒 &gt;0，因此每一点处的切线斜率会越来越大，函数图像向上凹。</p>
 </div>
 <div class="section" id="id33">
-<h3><a class="toc-backref" href="#id78">4.5 曲线的拐点</a><a class="headerlink" href="#id33" title="永久链接至标题">¶</a></h3>
+<h3><a class="toc-backref" href="#id79">4.5 曲线的拐点</a><a class="headerlink" href="#id33" title="永久链接至标题">¶</a></h3>
 <p>如果在 x=c 处函数的凹凸性改变了，那么该点也称为函数曲线的拐点。寻找拐点的方法很简单，先求出令 f&#8217;&#8216;(x)=0 的点或二阶导数不存在的点，观察这些点的左右两侧二阶导数的符号，如果两边符号相反，则该点是拐点。</p>
 </div>
 <div class="section" id="id34">
-<h3><a class="toc-backref" href="#id79">4.6 函数极值、最大值与最小值</a><a class="headerlink" href="#id34" title="永久链接至标题">¶</a></h3>
-<p>函数极值的概念：</p>
+<h3><a class="toc-backref" href="#id80">4.6 函数极值、最大值与最小值</a><a class="headerlink" href="#id34" title="永久链接至标题">¶</a></h3>
+<div class="section" id="id35">
+<h4><a class="toc-backref" href="#id81">4.6.1 基本概念</a><a class="headerlink" href="#id35" title="永久链接至标题">¶</a></h4>
 <img alt="_images/函数极值.png" src="_images/函数极值.png" />
+<p>极值定义：若函数 f(x) 在 x0 的一个邻域D有定义，且对D中除 x0 的所有点，都有 f(x)&lt;f(x0) ，则称 f(x0) 是函数 f(x) 的一个极大值。同理，若对D的所有点，都有 f(x)&gt;f(x0) ，则称 f(x0) 是函数 f(x) 的一个极小值。</p>
+<p>对应的，函数最值的定义如下：</p>
+<p>最小值:设函数 y=f(x) 的定义域为 I ，如果存在实数M满足：①对于任意实数 x∈ I ，都有 f(x)≥M ，②存在 x0∈I 。使得 f(x0)=M ，那么，我们称实数 M 是函数 y=f(x) 的最小值。</p>
+<p>最大值:设函数 y=f(x) 的定义域为 I ，如果存在实数M满足：①对于任意实数 x∈I ，都有 f(x)≤M ，②存在 x0∈I 。使得 f(x0)=M ，那么，我们称实数 M 是函数 y=f(x) 的最大值。</p>
+<img alt="_images/函数极值2.jpg" src="_images/函数极值2.jpg" />
+<p>鞍点（saddle point）：目标函数在此点上的梯度（一阶导数）值为 0， 但从该点出发的一个方向是函数的极大值点，而在另一个方向是函数的极小值点。</p>
+</div>
 <div class="section" id="fermat-s-theorem">
-<h4><a class="toc-backref" href="#id80">4.6.1 费马引理（Fermat&#8217;s Theorem）</a><a class="headerlink" href="#fermat-s-theorem" title="永久链接至标题">¶</a></h4>
+<h4><a class="toc-backref" href="#id82">4.6.2 费马引理（Fermat&#8217;s Theorem）</a><a class="headerlink" href="#fermat-s-theorem" title="永久链接至标题">¶</a></h4>
 <p>函数的每一个极值都是驻点，函数的导数在该点为零，或者是不可导的点。</p>
 </div>
-<div class="section" id="id35">
-<h4><a class="toc-backref" href="#id81">4.6.2 如何寻找函数极值点</a><a class="headerlink" href="#id35" title="永久链接至标题">¶</a></h4>
+<div class="section" id="id36">
+<h4><a class="toc-backref" href="#id83">4.6.3 如何寻找函数极值点</a><a class="headerlink" href="#id36" title="永久链接至标题">¶</a></h4>
 <p>基于费马引理，我们可以通过求驻点（或不可导点）来找到函数极值点，再结合二阶导数来区分是极大还是极小值。步骤如下：</p>
 <blockquote>
 <div><ol class="arabic simple">
@@ -642,39 +652,39 @@ f'(x) &amp;= cos((4x)^2) \cdot 2(4x) \cdot 4 \\
 </div>
 </div>
 </div>
-<div class="section" id="id36">
-<h2><a class="toc-backref" href="#id82">5. 泰勒公式</a><a class="headerlink" href="#id36" title="永久链接至标题">¶</a></h2>
 <div class="section" id="id37">
-<h3><a class="toc-backref" href="#id83">5.1 问题由来</a><a class="headerlink" href="#id37" title="永久链接至标题">¶</a></h3>
+<h2><a class="toc-backref" href="#id84">5. 泰勒公式</a><a class="headerlink" href="#id37" title="永久链接至标题">¶</a></h2>
+<div class="section" id="id38">
+<h3><a class="toc-backref" href="#id85">5.1 问题由来</a><a class="headerlink" href="#id38" title="永久链接至标题">¶</a></h3>
 <p>假设有人问你，如何计算 cos(2) 的值？是不是觉得很困难？</p>
 <p>有些函数，例如 f(x) = cos(x)，进行函数值的计算很困难，那么有没有办法把这类函数替换成其他的近似函数，从而利用有限次的加减乘除的简单算术运算，便能求得其函数值？泰勒公式就是由此而来： <strong>用一个多项式函数来近似任意的其他函数</strong> 。至于为什么是用多项式函数来近似而不是其他什么函数，是因为多项式函数在数学上非常“友好”，方便计算，方便求导，方便积分。</p>
 </div>
-<div class="section" id="id38">
-<h3><a class="toc-backref" href="#id84">5.2 泰勒公式</a><a class="headerlink" href="#id38" title="永久链接至标题">¶</a></h3>
+<div class="section" id="id39">
+<h3><a class="toc-backref" href="#id86">5.2 泰勒公式</a><a class="headerlink" href="#id39" title="永久链接至标题">¶</a></h3>
 <img alt="_images/泰勒公式.png" src="_images/泰勒公式.png" />
 <p>泰勒公式的形式看似复杂，但只要理解了其本质，自己也能分分钟写出来。关于如何理解泰勒公式，知乎上排名第一的答案已经写的非常精彩了 <a class="reference external" href="https://www.zhihu.com/question/25627482">https://www.zhihu.com/question/25627482</a> ，这里就不再详细展开，只把最核心的思想总结如下：</p>
 <p>物理学上，如果想仿造一段曲线，那么首先应该保证曲线的起始点一样，其次保证起始点处位移随时间的变化率一样（速度相同），再次应该保证前两者相等的同时关于时间的二阶变化率一样（加速度相同）……如果随时间每一阶变化率（每一阶导数）都一样，那这两根曲线肯定是完全等价的。</p>
 <p>泰勒公式的产生与上述思想完全一致：如果我们要模仿任意一个原函数 f(x)，我们只需要构造这样一个多项式函数 g(x)，保证这两个函数在某一点的初始值相等，1阶导数相等，2阶导数相等，……n阶导数相等，就可以做到一个很好的近似。</p>
 <p class="rubric">References</p>
-<table class="docutils footnote" frame="void" id="id39" rules="none">
+<table class="docutils footnote" frame="void" id="id40" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
 <tr><td class="label">[1]</td><td>Calculus Cheat Sheet <a class="reference external" href="http://tutorial.math.lamar.edu/pdf/Calculus_Cheat_Sheet_All.pdf">http://tutorial.math.lamar.edu/pdf/Calculus_Cheat_Sheet_All.pdf</a></td></tr>
 </tbody>
 </table>
-<table class="docutils footnote" frame="void" id="id40" rules="none">
+<table class="docutils footnote" frame="void" id="id41" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
 <tr><td class="label">[2]</td><td>《高等数学（第六版）》同济大学数学系 编，高等教育出版社</td></tr>
 </tbody>
 </table>
-<table class="docutils footnote" frame="void" id="id41" rules="none">
+<table class="docutils footnote" frame="void" id="id42" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
 <tr><td class="label">[3]</td><td>Essense of Calculus, 3Blue1Brown</td></tr>
 </tbody>
 </table>
-<table class="docutils footnote" frame="void" id="id42" rules="none">
+<table class="docutils footnote" frame="void" id="id43" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
 <tr><td class="label">[4]</td><td>麻省理工学院公开课：单变量微积分, <a class="reference external" href="http://open.163.com/special/sp/singlevariablecalculus.html">http://open.163.com/special/sp/singlevariablecalculus.html</a></td></tr>

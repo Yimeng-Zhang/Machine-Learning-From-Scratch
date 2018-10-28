@@ -224,6 +224,9 @@ TODO
 随机打乱一个特征的值，观察在算法上的表现是否会有明显下降。如果某个特征很重要，有很强的预测能力，那么打乱其顺序会造成模型表现的大幅度下降。反过来，如果某个特征无关紧要，那么对它怎么乱动，都不会影响最终的结果。
 
 
+总结：
+美团机器学习 P33 
+
 .. https://stats.stackexchange.com/questions/81659/mutual-information-versus-correlation
 .. https://www.quora.com/What-is-the-difference-between-mutual-information-and-correlation
 
