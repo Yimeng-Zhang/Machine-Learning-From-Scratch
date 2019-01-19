@@ -31,8 +31,7 @@
 
 当机器学习模型对训练集学习的太好的时候，此时表现为训练误差很小，而泛化误差会很大，这种情况我们称之为\ **过拟合**\ ，而当模型在数据集上学习的不够好的时候，此时训练误差较大，这种情况我们称之为\ **欠拟合**\ 。具体表现如下图所示（来源Coursera的机器学习课程），第一幅图就是欠拟合，第三幅图就是过拟合。
 
-.. figure:: D:\MyCode\Machine-Learning-From-Scratch\docs\images\过拟合欠拟合3.png
-   :alt: 
+.. image:: images/过拟合欠拟合3.png
 
 .. _header-n19:
 
@@ -44,8 +43,7 @@
 **模型过于简单**
 即模型形式太简单，以致于无法捕捉到数据特征，无法很好的拟合数据，如下图。在模型后加入一个二次项，拟合能力就提升了许多。
 
-.. figure:: D:\MyCode\Machine-Learning-From-Scratch\docs\images\过拟合欠拟合2.png
-   :alt: 
+.. image:: images/过拟合欠拟合2.png
 
 **缺乏强预测能力的特征**
 很容易懂，可以通过组合、泛化等各种手段增加特征。
@@ -66,8 +64,7 @@
 **模型复杂度过高**
 导致模型对训练数据学习过度，记住了过于细节的特征，如下图（来源Coursera的机器学习课程）。
 
-.. figure:: D:\MyCode\Machine-Learning-From-Scratch\docs\images\过拟合欠拟合1.png
-   :alt: 
+.. image:: images/过拟合欠拟合1.png
 
 .. _header-n31:
 
@@ -76,8 +73,7 @@
 
 通俗的讲，模型的容量是指模型拟合各种函数的能力。例如，模型是三次多项式构成的函数：
 
-.. figure:: D:\MyCode\Machine-Learning-From-Scratch\docs\images\三次多项式.gif
-   :alt: 
+.. image:: images/三次多项式.gif
 
 能拟合的函数包括一次函数、二次函数和三次函数。但它不能拟合更高阶的函数。另外，它输出的是参数的线性函数，无法描述非线性关系。
 
@@ -105,8 +101,7 @@
 
 -  泛化误差与训练误差的差值会增大。
 
-.. figure:: D:\MyCode\Machine-Learning-From-Scratch\docs\images\模型容量.png
-   :alt: 
+.. image:: images/模型容量.png
 
 .. _header-n58:
 
@@ -127,7 +122,7 @@ training data. High variance algorithms will produce drastically
 different models depending on the training set.
 度量了训练集的变动所导致的学习性能的变化，刻画了模型输出结果由于训练集的不同造成的波动。
 
-|image0|
+.. image:: images/偏差方差1.png
 
 **高偏差，低方差**\ 的算法在不同训练集上训练得到的模型基本一致，但预测值与真实值差距较大；\ **高方差，低偏差**\ 的算法得到的模型的预测值和真实值差距小，但在不同训练集上得到的模型输出波动大。
 
@@ -138,8 +133,7 @@ different models depending on the training set.
 3.2 误差分解
 ------------
 
-.. figure:: D:\MyCode\Machine-Learning-From-Scratch\docs\images\误差分解.png
-   :alt: 
+.. image:: images/误差分解.png
 
 如上图，泛化误差可以分解为偏差、方差和噪声之和。
 
@@ -240,8 +234,7 @@ different models depending on the training set.
 
 **混淆矩阵**
 
-.. figure:: D:\MyCode\Machine-Learning-From-Scratch\docs\images\混淆矩阵.png
-   :alt: 
+.. image:: images/混淆矩阵.png
 
 混淆矩阵是分类任务中较常见的评价指标。对于二分类问题，通常将关注的类作为正类（比如欺诈交易），其他类作为负类（比如正常交易）。令：
 
@@ -284,13 +277,11 @@ TP/(TP+FN)，即所有真的正例中，多少比例被模型预测出来了。
 
 **F1 Score**\ ：精确率和召回率的调和平均。F1认为两者同等重要。
 
-.. figure:: D:\MyCode\Machine-Learning-From-Scratch\docs\images\F1score.png
-   :alt: 
+.. image:: images/F1score.png
 
 **F-beta Score**\ ：F1 更一般的形式。
 
-.. figure:: D:\MyCode\Machine-Learning-From-Scratch\docs\images\Fbeta.png
-   :alt: 
+.. image:: images/Fbeta.png
 
 其中 Beta
 度量了查全率对查准率的相对重要性。Beta大于1时，召回率更重要，在0-1之间时，精确率更重要。常用的Beta值有
@@ -307,16 +298,14 @@ TP/(TP+FN)，即所有真的正例中，多少比例被模型预测出来了。
 ，预测为正类的概率依次为 (p1,p2,...pn) 。接下来，从高到低依次将 pi
 作为分类阈值，即大于该阈值判断为正例，小于该阈值判断为负例：
 
-.. figure:: D:\MyCode\Machine-Learning-From-Scratch\docs\images\ROC1.png
-   :alt: 
+.. image:: images/ROC1.png
 
 此时计算得到的精确率记做 Pi ，召回率记做 Ri
 。以精确率为纵轴、召回率为横轴作图，就得到
 ``P-R``\ 曲线。该曲线由点各个分类阈值水平下的 Recall-Precision
 坐标组成。
 
-.. figure:: http://www.huaxiaozhuan.com/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0/imgs/model_selection/P_R.png
-   :alt: 
+.. image:: images/PR.png
 
 P-R 曲线从左上角\ ``(0,1)`` 到右下角\ ``(1,0)`` 。
 
@@ -343,8 +332,7 @@ P-R 曲线直观显示出分类器在样本总体上的查全率、查准率。�
 
    可以考察平衡点。平衡点\ ``Break-Even Point:BEP``\ 是P-R 曲线上查准率等于查全率的点，可以判定：平衡点较远的P-R 曲线较好。
 
-.. figure:: D:\MyCode\Machine-Learning-From-Scratch\docs\images\PR曲线3.JPG
-   :alt: 
+.. image:: images/PR曲线3.JPG
 
 .. _header-n217:
 
@@ -365,8 +353,8 @@ P-R 曲线直观显示出分类器在样本总体上的查全率、查准率。�
 ，预测为正类的概率依次为 (p1,p2,...pn) 。接下来，从高到低依次将 pi
 作为分类阈值，即：
 
-.. figure:: D:\MyCode\Machine-Learning-From-Scratch\docs\images\ROC1.png
-   :alt: 
+.. image:: images/ROC1.png
+
 
 当样本属于正例的概率大于等于 pi
 时，我们认为它是正例，否则为负例，这样每次选择一个不同的阈值，计算得到的真正例率记做
@@ -375,10 +363,9 @@ TPRi ，假正例率记做 FPRi
 {(TPR1,FPR1),(TPR2,FPR2)...(TPRn,FPRn)}
 组成。易得，测试数据越多，能供选取的阈值越多，ROC 曲线就越平滑。
 
-.. figure:: http://www.huaxiaozhuan.com/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0/imgs/model_selection/ROC.png
-   :alt: 
+.. image:: images/ROC.png
 
-``ROC``\ 曲线从左下角\ ``(0,0)`` 到右上角\ ``(1,1)`` 。
+ROC 曲线从左下角\ ``(0,0)`` 到右上角\ ``(1,1)`` 。
 
 开始时第一个样本（最可能为正例的）预测为正例，其它样本都预测为负类。此时：
 
@@ -409,7 +396,7 @@ TPRi ，假正例率记做 FPRi
 
    此时一个合理的判定依据是比较ROC曲线下面积大小，这个面积称作\ ``AUC:Area Under ROC Curve``\ 。
 
-``P-R``\ 曲线和ROC曲线刻画的都是阈值的选择对于分类度量指标的影响。
+P-R 曲线和ROC曲线刻画的都是阈值的选择对于分类度量指标的影响。
 
 通常一个分类器对样本预测的结果是一个概率结果，比如正类概率
 0.7。但是样本是不是正类还需要与阈值比较。
@@ -420,20 +407,20 @@ TPRi ，假正例率记做 FPRi
 
 -  如果更看重查全率，则将阈值下降，比如为 0.5 。
 
-``P-R``\ 曲线和ROC曲线上的每一个点都对应了一个阈值的选择，该点就是在该阈值下的\ ``(查准率，查全率)``
+P-R 曲线和 ROC 曲线上的每一个点都对应了一个阈值的选择，该点就是在该阈值下的\ ``(查准率，查全率)``
 /``(真正例率，假正例率)`` 。沿着横轴的方向对应着阈值的下降。
 
-``AUC``\ 被定义为ROC曲线下的面积，显然这个面积的数值不会大于1。又由于ROC曲线一般都处于
+AUC 被定义为ROC曲线下的面积，显然这个面积的数值不会大于1。又由于ROC曲线一般都处于
 y=x
 这条直线的上方，所以AUC的取值范围在0.5和1之间。使用AUC值作为评价标准是因为很多时候ROC曲线并不能清晰的说明哪个分类器的效果更好，而作为一个数值，对应AUC更大的分类器效果更好。
 
-直观的理解，\ ``AUC``\ 值是一个概率值，涵义是当你随机挑选一个正样本以及一个负样本，当前的分类算法根据计算得到的预测值将这个正样本排在负样本前面的概率就是AUC值。AUC值越大，当前的分类算法越有可能将正样本排在负样本前面，即能够更好的分类。
+直观的理解，AUC 值是一个概率值，涵义是当你随机挑选一个正样本以及一个负样本，当前的分类算法根据计算得到的预测值将这个正样本排在负样本前面的概率就是AUC值。AUC值越大，当前的分类算法越有可能将正样本排在负样本前面，即能够更好的分类。
 
-``ROC``\ 曲线有个很好的特性：\ **当测试集中的正负样本的分布变化的时候，ROC
+ROC 曲线有个很好的特性：\ **当测试集中的正负样本的分布变化的时候，ROC
 曲线能够保持不变**\ ，\ **而 P-R
 曲线的形状则会发生较大变化**\ 。在实际的数据集中经常会出现类不平衡现象，即负样本比正样本多很多（或者相反），而且测试数据中的正负样本的分布也可能随着时间变化，此时使用对样本分布不敏感的评价指标就显得十分重要。
 
-另外，ROC曲线对于排序敏感，而对预测的具体分数则不怎么敏感。
+另外，ROC 曲线对于排序敏感，而对预测的具体分数则不怎么敏感。
 
 .. _header-n267:
 
@@ -449,8 +436,7 @@ KS
 曲线使用的指标一样，只是两者的横坐标不同）。由小到大改变阈值从而得到多个点，将这些点连接后分别得到正、负实例累积曲线。正、负实例累积曲线相减得到KS曲线，
 KS曲线的最高点即KS值，该点所对应的阈值划分点即模型最佳划分能力的点。
 
-.. figure:: D:\MyCode\Machine-Learning-From-Scratch\docs\images\KS.jpg
-   :alt: 
+.. image:: images/KS.jpg
 
 在信贷风险评分场景中，KS值也是常见的一个评价指标，其绘制方式与上述稍有不同，其定义为各段信用评分组别中，好坏客户的累计占比曲线的最大差值，即横轴不再是模型的输出阈值，而是信用评分区间，一般把所有样本等分划为10等份，每一份计算该区间内的
 KS。
@@ -467,10 +453,10 @@ KS
 4.1.5 代价矩阵
 ~~~~~~~~~~~~~~
 
-实际应用过程中，不同类型的错误所造成的后果可能有所不同。如：将健康人诊断为患者，与将患者诊断为健康人，其代价就不同。为权衡不同类型错误所造成的不同损失，可以为错误赋予非均等代价（\ ``unequal cost``\ ）。
+实际应用过程中，不同类型的错误所造成的后果可能有所不同。如：将健康人诊断为患者，与将患者诊断为健康人，其代价就不同。为权衡不同类型错误所造成的不同损失，可以为错误赋予非均等代价（unequal cost）。
 
-对于二类分类问题，可以设定一个“代价矩阵”(\ ``cost matrix``)，其中 costij
-表示将第 ``i`` 类样本预测为第 ``j`` 类样本的代价。通常 costii=0
+对于二类分类问题，可以设定一个“代价矩阵”(cost matrix)，其中 costij
+表示将第 i 类样本预测为第 j 类样本的代价。通常 costii=0
 表示预测正确时的代价为0 。
 
 =========== =========== ===========
@@ -480,29 +466,21 @@ KS
 真实：第1类 cost10      0
 =========== =========== ===========
 
-在非均等代价下，希望找到的不再是简单地最小化错误率的模型，而是希望找到最小化总体代价\ ``total cost``\ 的模型。
+在非均等代价下，希望找到的不再是简单地最小化错误率的模型，而是希望找到最小化总体代价total cost的模型。
 
-在非均等代价下，ROC曲线不能直接反映出分类器的期望总体代价，此时需要使用代价曲线\ ``cost curve``\ 。
+在非均等代价下，ROC曲线不能直接反映出分类器的期望总体代价，此时需要使用代价曲线cost curve。
 
 -  代价曲线的横轴就是正例概率代价。
 
-   .. figure:: D:\MyCode\Machine-Learning-From-Scratch\docs\images\代价矩阵1.png
-      :alt: 
+.. image:: images/代价矩阵1.png
 
-   其中 为正例（第0类）的概率。
+其中 p 为正例（第0类）的概率。
 
 -  代价曲线的纵轴为：
 
-   .. figure:: D:\MyCode\Machine-Learning-From-Scratch\docs\images\代价矩阵2.png
-      :alt: 
+.. image:: images/代价矩阵2.png
 
-   其中：
-
-   ``FPR``\ 为假正例率 。
-
-   它刻画了模型将真实的负样本预测为正类的概率。\ ``FNR``\ 为假负例率 。
-
-   它刻画了模型将真实的正样本预测为负类的概率。
+其中：``FPR``\ 为假正例率 。它刻画了模型将真实的负样本预测为正类的概率。\ ``FNR``\ 为假负例率 。它刻画了模型将真实的正样本预测为负类的概率。
 
 .. _header-n307:
 
@@ -511,21 +489,28 @@ KS
 
 回归问题接触的不多，简单的把常用指标罗列一下。
 
--  平均绝对误差\ ``mean absolute error:MAE`` ：\ |image1|
+平均绝对误差\ ``mean absolute error:MAE`` ：
 
-   也称为 L1
-   范数损失，即绝对误差的平均值。取绝对值可以让误差的正负号作用抵消。缺点是该误差形式没有二阶导数，导致不能用某些方法优化。
+.. image:: images/平均绝对误差.png
 
--  均方误差\ ``mean square error:MSE`` ：\ |image2|
+也称为 L1 范数损失，即绝对误差的平均值。取绝对值可以让误差的正负号作用抵消。缺点是该误差形式没有二阶导数，导致不能用某些方法优化。
 
-   对大误差的样本有更多的惩罚，因此也对离群点更敏感。
+均方误差\ ``mean square error:MSE`` ：
+.. image:: images/均方误差.png
 
--  均方根误差\ ``root mean squared error:RMSE`` ： |image3|
+对大误差的样本有更多的惩罚，因此也对离群点更敏感。
 
--  均方根对数误差\ ``root mean squared logarithmic error:RMSLE``
-   ：\ |image4|
+均方根误差\ ``root mean squared error:RMSE`` ： 
 
-   为使得\ ``log`` 有意义，也可以使用： |image5|
+.. image:: images/均方根误差.png
+
+均方根对数误差\ ``root mean squared logarithmic error:RMSLE``
+
+.. image:: images/均方根对数误差.png
+
+为使得\ ``log`` 有意义，也可以使用：
+
+.. image:: images/均方根对数误差2.png
 
 使用均方根对数误差的优势：
 
@@ -562,8 +547,7 @@ KS
 
 一般情况下，我们根据模型在测试集上的表现进行参数调优，但如果我们一直用同一份测试集作为参考来调优，最后的结果很可能使得模型过拟合于这份测试集。因此，更好的做法是将数据集切分为\ **三个互斥的部分——训练集、验证集与测试集**\ ，然后在训练集上训练模型，在验证集上选择模型，最后用测试集上的误差作为泛化误差的估计。我们可以在验证集上反复尝试不同的参数组合，当找到一组满意的参数后，最后在测试集上估计模型的泛化能力。整个过程如下图：
 
-.. figure:: D:\MyCode\Machine-Learning-From-Scratch\docs\images\holdout1.png
-   :alt: 
+.. image:: images/holdout1.png
 
 -  三部分划分比例，通常取
    60%：20%：20%（或者两部分划分比例70%：30%）。如果训练集的比例过小，则得到的模型很可能和全量数据得到的模型差别很大；训练集比例过大，则测试的结果可信度降低。
@@ -593,11 +577,9 @@ K
 K
 折交叉验证的优点是每个样本都会被用作训练和测试，因此产生的参数估计的方差会很小。以10折交叉验证为例(下图)，对模型的泛化能力评估由10份独立的测试集上的结果平均得到。
 
-.. figure:: D:\MyCode\Machine-Learning-From-Scratch\docs\images\KFOLD.png
-   :alt: 
+.. image:: images/KFOLD.png
 
-K
-取太大，实验成本高，太小则实验的稳定性依然偏低。一般K取值为5或10。如果训练集数量不多，则可以再增加K的大小，这样每次训练会用到更多的样本，对泛化能力估计的偏差会小一些。
+K 取太大，实验成本高，太小则实验的稳定性依然偏低。一般K取值为5或10。如果训练集数量不多，则可以再增加K的大小，这样每次训练会用到更多的样本，对泛化能力估计的偏差会小一些。
 
 与留出法相似，将数据集划分为 K
 个子集同样存在多种划分方式。为了减少因为样本划分不同而引入的差别， K
@@ -649,8 +631,7 @@ K=1 则得到了 K
 
 根据极限:
 
-.. figure:: D:\MyCode\Machine-Learning-From-Scratch\docs\images\638.png
-   :alt: 
+.. image:: images/638.png
 
 即通过自助采样，初始数据集中约有 36.8% 的样本未出现在采样数据集 D' 中。
 
@@ -676,12 +657,14 @@ estimate (OOB)。
 是常用的检验模型稳定性的指标。关于 PSI
 的介绍可以参考\ `这篇文章 <http://ucanalytics.com/blogs/population-stability-index-psi-banking-case-study/>`__\ 。
 
-计算公式：\ |image6|
+计算公式：
+
+.. image:: images/PSI1.png
 
 评估标准：
 
-.. figure:: D:\MyCode\Machine-Learning-From-Scratch\docs\images\PSI2.png
-   :alt: 
+.. image:: images/PSI2.png
+
 
 同样的，特征层面也需要监测文档情况，包括：
 

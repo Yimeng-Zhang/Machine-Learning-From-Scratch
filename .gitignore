@@ -21,12 +21,7 @@ docs/_build/html/作废/特征清洗.html
 docs/_build/html/作废/特征监控.html
 docs/_build/html/作废/特征缩放.html
 docs/_build/html/作废/特征选择.html
-docs/作废/数据探索.rst
-docs/作废/数据集构造.rst
-docs/作废/特征学习.rst
-docs/作废/特征工程.rst
-docs/作废/特征清洗.rst
-docs/作废/特征监控.rst
-docs/作废/特征缩放.rst
+docs/作废/
 docs/作废/特征选择.rst
 docs/_build/html/_sources/作废/
+ignore

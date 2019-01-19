@@ -6,6 +6,30 @@
 
 [项目地址](https://machine-learning-from-scratch.readthedocs.io/zh_CN/latest/)
 
+## 目录
+
+**1. 数据处理**
+
+  -    数据探索
+  -    特征清洗
+  -    特征工程
+  -    特征选择
+      （该部分内容已迁移至 [这里](https://github.com/Yimeng-Zhang/feature-engineering-and-feature-selection)）
+
+**2. 数学基础**
+
+  -    单变量微积分 
+  -    多变量微积分
+  -    线性代数
+  -    概率论
+  -    统计学（TODO）
+  -    最优化算法
+
+**3. 机器学习算法**
+
+  -    模型评估与模型调优
+  -    正则化（TODO）
+  -    损失函数（TODO）
 
 
 
