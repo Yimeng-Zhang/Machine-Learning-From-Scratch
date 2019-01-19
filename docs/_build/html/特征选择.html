@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>特征选择 Feature Selection &mdash; Machine Learning From Scratch 0.1 文档</title>
+  <title>特征选择 &mdash; Machine Learning From Scratch 0.1 文档</title>
   
 
   
@@ -29,8 +29,8 @@
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="index" title="索引" href="genindex.html" />
     <link rel="search" title="搜索" href="search.html" />
-    <link rel="next" title="特征学习 Representation Learning" href="特征学习.html" />
-    <link rel="prev" title="特征工程 Feature Engineering" href="特征工程.html" /> 
+    <link rel="next" title="单变量微积分 Calculus Part1" href="单变量微积分.html" />
+    <link rel="prev" title="特征工程" href="特征工程.html" /> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -83,65 +83,12 @@
               
             
             
-              <p class="caption"><span class="caption-text">数据处理 Data Processing</span></p>
+              <p class="caption"><span class="caption-text">数据处理 Data Processing（内容已迁移）</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="数据探索.html">数据探索 Data Exploration</a></li>
-<li class="toctree-l1"><a class="reference internal" href="特征清洗.html">特征清洗 Feature Cleaning</a></li>
-<li class="toctree-l1"><a class="reference internal" href="特征缩放.html">特征缩放 Feature Scaling</a></li>
-<li class="toctree-l1"><a class="reference internal" href="特征工程.html">特征工程 Feature Engineering</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">特征选择 (InProcess)</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#id1">1. 基本概念</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id2">1.1 什么是特征选择？</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id3">1.2 为什么要做特征选择？</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id4">1.3 特征选择前是否先要分割训练集/测试集？</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#filter">2. Filter 方法</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id5">2.1 综述</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#constant-features">2.2 常量特征 Constant Features</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#quasi-constant-features">2.3 准常量特征 Quasi-Constant Features</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id6">2.4 重复的特征</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id7">2.5 彼此相关的特征</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id8">2.6 基于统计量的特征排序</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#mutual-information">2.6.1 互信息 Mutual Information</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id9">2.6.2 卡方检验</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#roc-auc">2.6.3 单变量 ROC-AUC 检验</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#iv">2.6.4 IV 值</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#wrapper">3. Wrapper 方法</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id10">3.1 综述</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#step-forward-selection">3.2 Step Forward Selection</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#step-backwards-selection">3.3 Step Backwards Selection</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#exhaustive-feature-selection">3.4 Exhaustive Feature Selection</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#embeddded">4. Embeddded 方法</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id11">4.1 综述</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#lasso">4.2 LASSO</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id12">4.3 基于决策树的特征重要性</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#id13">4.3.1 基于随机森林的特征选择</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#recursive-feature-selection-using-random-forests">4.3.2 Recursive feature selection using random forests</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#gradient-boosted-trees-importance">4.3.3 Gradient Boosted trees importance</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#extra-tree-importance">4.3.4 Extra-Tree importance</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id14">4.4 回归系数</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#id15">5. 混合方法</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#recursive-feature-elimination">5.1 递归特征消除 Recursive Feature Elimination</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#recursive-feature-addition">5.2 递归特征增加 Recursive Feature Addition</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#feature-shuffling">5.3 Feature Shuffling</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="特征学习.html">特征学习 (TODO)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="数据集构造.html">数据集构造 (TODO)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="特征监控.html">特征监控 (TODO)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="数据探索.html">数据探索</a></li>
+<li class="toctree-l1"><a class="reference internal" href="特征清洗.html">特征清洗</a></li>
+<li class="toctree-l1"><a class="reference internal" href="特征工程.html">特征工程</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">特征选择</a></li>
 </ul>
 <p class="caption"><span class="caption-text">数学基础 Math</span></p>
 <ul>
@@ -149,14 +96,14 @@
 <li class="toctree-l1"><a class="reference internal" href="多变量微积分.html">多变量微积分 Calculus P2</a></li>
 <li class="toctree-l1"><a class="reference internal" href="线性代数.html">线性代数 Linear Algebra (InProcess)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="概率论.html">概率论 Probability (InProcess)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="统计学.html">统计 Stats (TODO)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="统计学.html">统计学 Stats (TODO)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="最优化算法.html">最优化算法 (TODO)</a></li>
 </ul>
 <p class="caption"><span class="caption-text">机器学习算法 Algorithm</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="模型调优.html">模型调优 (TODO)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="模型评估与模型调优.html">模型评估与模型调优</a></li>
 <li class="toctree-l1"><a class="reference internal" href="正则化.html">正则化 (TODO)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="损失函数.html">损失函数 Loss Function (TODO)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="损失函数.html">损失函数 (TODO)</a></li>
 </ul>
 
             
@@ -202,7 +149,7 @@
     
       <li><a href="index.html">Docs</a> &raquo;</li>
         
-      <li>特征选择 Feature Selection</li>
+      <li>特征选择</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -221,291 +168,9 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="feature-selection">
-<h1>特征选择 Feature Selection<a class="headerlink" href="#feature-selection" title="永久链接至标题">¶</a></h1>
-<div class="contents local topic" id="contents">
-<ul class="simple">
-<li><a class="reference internal" href="#id1" id="id16">1. 基本概念</a><ul>
-<li><a class="reference internal" href="#id2" id="id17">1.1 什么是特征选择？</a></li>
-<li><a class="reference internal" href="#id3" id="id18">1.2 为什么要做特征选择？</a></li>
-<li><a class="reference internal" href="#id4" id="id19">1.3 特征选择前是否先要分割训练集/测试集？</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#filter" id="id20">2. Filter 方法</a><ul>
-<li><a class="reference internal" href="#id5" id="id21">2.1 综述</a></li>
-<li><a class="reference internal" href="#constant-features" id="id22">2.2 常量特征 Constant Features</a></li>
-<li><a class="reference internal" href="#quasi-constant-features" id="id23">2.3 准常量特征 Quasi-Constant Features</a></li>
-<li><a class="reference internal" href="#id6" id="id24">2.4 重复的特征</a></li>
-<li><a class="reference internal" href="#id7" id="id25">2.5 彼此相关的特征</a></li>
-<li><a class="reference internal" href="#id8" id="id26">2.6 基于统计量的特征排序</a><ul>
-<li><a class="reference internal" href="#mutual-information" id="id27">2.6.1 互信息 Mutual Information</a></li>
-<li><a class="reference internal" href="#id9" id="id28">2.6.2 卡方检验</a></li>
-<li><a class="reference internal" href="#roc-auc" id="id29">2.6.3 单变量 ROC-AUC 检验</a></li>
-<li><a class="reference internal" href="#iv" id="id30">2.6.4 IV 值</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a class="reference internal" href="#wrapper" id="id31">3. Wrapper 方法</a><ul>
-<li><a class="reference internal" href="#id10" id="id32">3.1 综述</a></li>
-<li><a class="reference internal" href="#step-forward-selection" id="id33">3.2 Step Forward Selection</a></li>
-<li><a class="reference internal" href="#step-backwards-selection" id="id34">3.3 Step Backwards Selection</a></li>
-<li><a class="reference internal" href="#exhaustive-feature-selection" id="id35">3.4 Exhaustive Feature Selection</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#embeddded" id="id36">4. Embeddded 方法</a><ul>
-<li><a class="reference internal" href="#id11" id="id37">4.1 综述</a></li>
-<li><a class="reference internal" href="#lasso" id="id38">4.2 LASSO</a></li>
-<li><a class="reference internal" href="#id12" id="id39">4.3 基于决策树的特征重要性</a><ul>
-<li><a class="reference internal" href="#id13" id="id40">4.3.1 基于随机森林的特征选择</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#recursive-feature-selection-using-random-forests" id="id41">4.3.2 Recursive feature selection using random forests</a></li>
-<li><a class="reference internal" href="#gradient-boosted-trees-importance" id="id42">4.3.3 Gradient Boosted trees importance</a></li>
-<li><a class="reference internal" href="#extra-tree-importance" id="id43">4.3.4 Extra-Tree importance</a></li>
-<li><a class="reference internal" href="#id14" id="id44">4.4 回归系数</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#id15" id="id45">5. 混合方法</a><ul>
-<li><a class="reference internal" href="#recursive-feature-elimination" id="id46">5.1 递归特征消除 Recursive Feature Elimination</a></li>
-<li><a class="reference internal" href="#recursive-feature-addition" id="id47">5.2 递归特征增加 Recursive Feature Addition</a></li>
-<li><a class="reference internal" href="#feature-shuffling" id="id48">5.3 Feature Shuffling</a></li>
-</ul>
-</li>
-</ul>
-</div>
-<div class="section" id="id1">
-<h2><a class="toc-backref" href="#id16">1. 基本概念</a><a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h2>
-<div class="section" id="id2">
-<h3><a class="toc-backref" href="#id17">1.1 什么是特征选择？</a><a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h3>
-<p><strong>Feature selection</strong> is the process of selecting a subset of relevant features (variables, predictors) for use in model construction. (from <a class="reference external" href="https://en.wikipedia.org/wiki/Feature_selection">Wiki</a>  )</p>
-<p>特征选择通常是紧跟着特征工程的后一步，即所有特征已经是干净的、经过适当的转换、编码，可以直接被算法使用的状态。</p>
-</div>
-<div class="section" id="id3">
-<h3><a class="toc-backref" href="#id18">1.2 为什么要做特征选择？</a><a class="headerlink" href="#id3" title="永久链接至标题">¶</a></h3>
-<blockquote>
-<div><ul class="simple">
-<li>在特征很多的情况下，模型学习容易遇到问题，例如 <a class="reference external" href="https://en.wikipedia.org/wiki/Curse_of_dimensionality">Curse of Dimensionality</a></li>
-<li>简单的模型更便于解释</li>
-<li>降低了过拟合的风险</li>
-<li>缩短训练时间</li>
-<li>降低了因为数据出错导致问题的风险</li>
-<li>很多时候多个特征之间是冗余的</li>
-</ul>
-</div></blockquote>
-</div>
-<div class="section" id="id4">
-<h3><a class="toc-backref" href="#id19">1.3 特征选择前是否先要分割训练集/测试集？</a><a class="headerlink" href="#id4" title="永久链接至标题">¶</a></h3>
-<p>答案是：是的。必须是。</p>
-<p>先分割好训练集/测试集的目地是防止 overfitting。这个道理很简单。测试集存在的本身就是为了完全独立于整个模型建立过程之外，所有会影响到模型学习的步骤，包括特征工程、特征清洗、特征选择等都应该只在训练集上进行，然后 Apply 到测试集上，再进行训练和测试。</p>
-<p>很多百度上的答案和书本没有强调这一点，甚至给出错误的指示。想深入了解的朋友可以谷歌 “Data Leakage”。 这篇文章里也有比较正式的解答: <a class="reference external" href="https://machinelearningmastery.com/data-leakage-machine-learning/">Data Leakage in Machine Learning</a> 。 这里也有一个很好的讨论: <a class="reference external" href="https://stats.stackexchange.com/questions/64825/should-feature-selection-be-performed-only-on-training-data-or-all-data">Should feature selection be performed only on training data</a> 。</p>
-</div>
-</div>
-<div class="section" id="filter">
-<h2><a class="toc-backref" href="#id20">2. Filter 方法</a><a class="headerlink" href="#filter" title="永久链接至标题">¶</a></h2>
-<div class="section" id="id5">
-<h3><a class="toc-backref" href="#id21">2.1 综述</a><a class="headerlink" href="#id5" title="永久链接至标题">¶</a></h3>
-<dl class="docutils">
-<dt><strong>特性</strong></dt>
-<dd><ul class="first last simple">
-<li>与具体算法无关，结果完全取决于单个特征本身</li>
-<li>计算量少</li>
-<li>很少单独使用，通常只作为初步筛选</li>
-</ul>
-</dd>
-<dt><strong>步骤</strong></dt>
-<dd><ul class="first last simple">
-<li>根据某一标准对特征打分并排序</li>
-<li>选择得分最高的Top N 个特征</li>
-</ul>
-</dd>
-</dl>
-</div>
-<div class="section" id="constant-features">
-<h3><a class="toc-backref" href="#id22">2.2 常量特征 Constant Features</a><a class="headerlink" href="#constant-features" title="永久链接至标题">¶</a></h3>
-<p>如果某个特征在所有样本上都是同一个值，那它不会对模型的学习有任何作用，可以直接删除。</p>
-</div>
-<div class="section" id="quasi-constant-features">
-<h3><a class="toc-backref" href="#id23">2.3 准常量特征 Quasi-Constant Features</a><a class="headerlink" href="#quasi-constant-features" title="永久链接至标题">¶</a></h3>
-<p>如果某个特征在绝大部分样本上是同一个值，同样，很有可能也是无用。当然也有例外，特别是目标变量也是严重不平衡的时候，需要单独检查一下特征与目标变量的关系后再决定是否删除。</p>
-</div>
-<div class="section" id="id6">
-<h3><a class="toc-backref" href="#id24">2.4 重复的特征</a><a class="headerlink" href="#id6" title="永久链接至标题">¶</a></h3>
-<p>即两个特征在数据集上完全一样。当有多个类别变量并且做了 one-hot encoding 时，出现两个完全一致的特征的情况容易发生。这时移除其中任何一个即可。</p>
-</div>
-<div class="section" id="id7">
-<h3><a class="toc-backref" href="#id25">2.5 彼此相关的特征</a><a class="headerlink" href="#id7" title="永久链接至标题">¶</a></h3>
-<p>基于特征的相关性来筛选特征，建立在这个假设下： &#8220;Good feature subsets contain features highly correlated with the target, yet uncorrelated to each other&#8221;. 好的特征集应该彼此之间尽量不相关，而与目标变量高度相关。</p>
-<p>通常，特征选择前已经做好了相应了特征工程工作，所有类别变量也已经编码成了数字形式，因此我们可以统一用 Pearson  相关系数来进行检查，找到彼此高度相关的特征集合，决定保留哪一些。Pearson 相关系数的结果的取值区间为[-1，1]，-1表示完全的负相关(这个变量下降，那个就会上升)，+1表示完全的正相关，0表示没有线性相关。一般相关系数绝对值 &gt;=0.8 的认为是高度相关。</p>
-<p>但 Pearson 相关系数的一个明显缺陷是只对线性关系敏感。如果变量间的关系是非线性的，即使完全一一对应，Pearson相关性也可能在0左右。</p>
-</div>
-<div class="section" id="id8">
-<h3><a class="toc-backref" href="#id26">2.6 基于统计量的特征排序</a><a class="headerlink" href="#id8" title="永久链接至标题">¶</a></h3>
-<div class="admonition warning">
-<p class="first admonition-title">警告</p>
-<p class="last">以下几个方法采用某一个统计评估指标，单独的对每一个候选特征与目标变量直接的关系进行衡量和排序，根据排序结果选择靠前的特征。但问题是，这类方法不会考虑特征之间的相互作用，例如有些特征单个的看与目标变量毫无预测能力，但和其他特征组合在一起就有了一定效果。因此这一部分的方法需要谨慎使用。</p>
-</div>
-<div class="section" id="mutual-information">
-<h4><a class="toc-backref" href="#id27">2.6.1 互信息 Mutual Information</a><a class="headerlink" href="#mutual-information" title="永久链接至标题">¶</a></h4>
-<p>信息的概念来自于信息熵,是变量间相互依赖性的量度。通俗的来讲：互信息是一个随机变量包含另外一个随机变量的信息量，或者说如果已知一个变量，另外一个变量减少的信息量。</p>
-<p>互信息的概念和计算 TODO</p>
-</div>
-<div class="section" id="id9">
-<h4><a class="toc-backref" href="#id28">2.6.2 卡方检验</a><a class="headerlink" href="#id9" title="永久链接至标题">¶</a></h4>
-<p>衡量两个类别变量样本的独立性。假设是：一个样本中已发生事件的次数分配会遵守某个特定的理论分配。通常的讲：观测频数跟实际频数应该没有区别，除非两个变量不是独立的。需要注意的是，当数据集很大时，大部分特征的卡方检验都会显著。真正使用的时候需要格外注意。</p>
-</div>
-<div class="section" id="roc-auc">
-<h4><a class="toc-backref" href="#id29">2.6.3 单变量 ROC-AUC 检验</a><a class="headerlink" href="#roc-auc" title="永久链接至标题">¶</a></h4>
-<blockquote>
-<div><ul class="simple">
-<li>用单个候选特征和目标变量建立一颗决策树</li>
-<li>根据模型的 ROC-AUC 得分（或MSE）对特征排序</li>
-<li>挑选排名最高的N个特征</li>
-</ul>
-</div></blockquote>
-</div>
-<div class="section" id="iv">
-<h4><a class="toc-backref" href="#id30">2.6.4 IV 值</a><a class="headerlink" href="#iv" title="永久链接至标题">¶</a></h4>
-<p>衡量两个类别变量的影响程度。IV 和互信息都源于信息论，这两个指标的关系很紧密。</p>
-</div>
-</div>
-</div>
-<div class="section" id="wrapper">
-<h2><a class="toc-backref" href="#id31">3. Wrapper 方法</a><a class="headerlink" href="#wrapper" title="永久链接至标题">¶</a></h2>
-<div class="section" id="id10">
-<h3><a class="toc-backref" href="#id32">3.1 综述</a><a class="headerlink" href="#id10" title="永久链接至标题">¶</a></h3>
-<dl class="docutils">
-<dt><strong>特性</strong></dt>
-<dd><ul class="first last simple">
-<li>利用某个具体的模型来对特征集打分</li>
-<li>对于每一个特征子集都会训练一个模型</li>
-<li>计算量大</li>
-<li>对于给定的具体算法，能产出最优表现的特征子集</li>
-<li>但对于不同的算法，结果不能通用</li>
-</ul>
-</dd>
-<dt><strong>步骤</strong></dt>
-<dd><ul class="first last simple">
-<li>搜索一个特征子集</li>
-<li>在该子集上训练一个模型</li>
-<li>评估模型表现</li>
-<li>重复以上步骤，直到满足某停止条件</li>
-</ul>
-</dd>
-</dl>
-<p><strong>特征子空间搜索算法分类</strong></p>
-<img alt="_images/Feature_selection.jpg" src="_images/Feature_selection.jpg" />
-<p>下面仅就其中几种基本方法稍作介绍。</p>
-</div>
-<div class="section" id="step-forward-selection">
-<h3><a class="toc-backref" href="#id33">3.2 Step Forward Selection</a><a class="headerlink" href="#step-forward-selection" title="永久链接至标题">¶</a></h3>
-<p><strong>前向选择</strong></p>
-<p>特征子集X从空集开始，每次选择一个特征x加入特征子集X，使得模型的表现指标最优（比如 ROC-AUC）。简单说就是，每次都选择一个使得评价函数的取值达到最优的特征加入，是一种简单的贪心算法。</p>
-<p>缺点是只能加入特征而不能去除特征。例如：特征A完全依赖于特征B与C，可以认为如果加入了特征B与C则A就是多余的。假设序列前向选择算法首先将A加入特征集，然后又将B与C加入，那么特征子集中就包含了多余的特征A。</p>
-</div>
-<div class="section" id="step-backwards-selection">
-<h3><a class="toc-backref" href="#id34">3.3 Step Backwards Selection</a><a class="headerlink" href="#step-backwards-selection" title="永久链接至标题">¶</a></h3>
-<p><strong>后向选择</strong></p>
-<p>从特征全集O开始，每次从特征集O中剔除一个特征x，使得剔除特征x后评价函数值达到最优。</p>
-<p>后向选择与前向选择正好相反，它的缺点是特征只能去除不能加入。以上两种都属于贪心算法，容易陷入局部最优值。</p>
-</div>
-<div class="section" id="exhaustive-feature-selection">
-<h3><a class="toc-backref" href="#id35">3.4 Exhaustive Feature Selection</a><a class="headerlink" href="#exhaustive-feature-selection" title="永久链接至标题">¶</a></h3>
-<p>暴力方法，遍历所有可能的特征子集，寻找评价函数最优的那一个子集。计算量非常大。例如名假设只有4个候选特征的情况下，就需要衡量所有一个特征、两个特征、三个特征、四个特征的组合（共4+6+4+1=15种）。在特征很多时需要耗费大量时间。</p>
-</div>
-</div>
-<div class="section" id="embeddded">
-<h2><a class="toc-backref" href="#id36">4. Embeddded 方法</a><a class="headerlink" href="#embeddded" title="永久链接至标题">¶</a></h2>
-<div class="section" id="id11">
-<h3><a class="toc-backref" href="#id37">4.1 综述</a><a class="headerlink" href="#id11" title="永久链接至标题">¶</a></h3>
-<dl class="docutils">
-<dt><strong>特性</strong></dt>
-<dd><ul class="first last simple">
-<li>在模型训练过程中同时做特征筛选</li>
-<li>相比 Wrapper 计算量更少，因为只训练一个模型</li>
-<li>能筛选出最适合于该算法的特征子集</li>
-</ul>
-</dd>
-<dt><strong>步骤</strong></dt>
-<dd><ul class="first last simple">
-<li>训练一个模型</li>
-<li>生成特征重要性</li>
-<li>丢弃不重要的特征</li>
-</ul>
-</dd>
-</dl>
-</div>
-<div class="section" id="lasso">
-<h3><a class="toc-backref" href="#id38">4.2 LASSO</a><a class="headerlink" href="#lasso" title="永久链接至标题">¶</a></h3>
-</div>
-<div class="section" id="id12">
-<h3><a class="toc-backref" href="#id39">4.3 基于决策树的特征重要性</a><a class="headerlink" href="#id12" title="永久链接至标题">¶</a></h3>
-<div class="section" id="id13">
-<h4><a class="toc-backref" href="#id40">4.3.1 基于随机森林的特征选择</a><a class="headerlink" href="#id13" title="永久链接至标题">¶</a></h4>
-<p>随机森林具有准确率高，不容易过拟合等优点，同时还提供了一种有效的特征选择方法。在 Scikit-learn 中，随机森林输出的 feature importance 是根据平均不纯度的降低来计算的。在每个节点处，计算该节点使用的分割特征降低了多少树的不纯度（一般用 Gini系数衡量），然后再用到达该节点的样本个数加权（衡量多少比例的样本会被这个特征影响到最终的判断），在所有的树上平均后得到该特征的重要性。</p>
-<p>需要注意的是，彼此相关的变量对于决策树来说，任何一个都可能被认为是重要特征，选择了其中一个，其他的关联特征的重要性就会下降。在使用随机森林做特征筛选之前建议先剔除彼此相关的特征。</p>
-<p>另外，利用随机森林输出特征重要性的计算方法有很多，例如基于模型准确率的影响来衡量特征重要性。Scikit-learn 里的度量只是一种方法，更多方法可以参考  <a class="reference external" href="https://hal.archives-ouvertes.fr/file/index/docid/755489/filename/PRLv4.pdf">Variable Selection using Random Forest</a> 。</p>
-</div>
-</div>
-<div class="section" id="recursive-feature-selection-using-random-forests">
-<h3><a class="toc-backref" href="#id41">4.3.2 Recursive feature selection using random forests</a><a class="headerlink" href="#recursive-feature-selection-using-random-forests" title="永久链接至标题">¶</a></h3>
-<p>鉴于上一节提到的随机森林面对相关特征，输出的特征重要性有偏差的弱点，除了先行剔除相关的特征外，还可以通过递归的方式进行筛选。基本的过程如下：</p>
-<blockquote>
-<div><ul class="simple">
-<li>使用所有特征训练随机森林</li>
-<li>移除最不重要的一个特征</li>
-<li>重新训练随机森林，计算特征重要性</li>
-<li>重复上述步骤，直到满足停止条件</li>
-</ul>
-</div></blockquote>
-</div>
-<div class="section" id="gradient-boosted-trees-importance">
-<h3><a class="toc-backref" href="#id42">4.3.3 Gradient Boosted trees importance</a><a class="headerlink" href="#gradient-boosted-trees-importance" title="永久链接至标题">¶</a></h3>
-<p>与随机森林原理类似。</p>
-</div>
-<div class="section" id="extra-tree-importance">
-<h3><a class="toc-backref" href="#id43">4.3.4 Extra-Tree importance</a><a class="headerlink" href="#extra-tree-importance" title="永久链接至标题">¶</a></h3>
-<p>与随机森林原理类似。</p>
-</div>
-<div class="section" id="id14">
-<h3><a class="toc-backref" href="#id44">4.4 回归系数</a><a class="headerlink" href="#id14" title="永久链接至标题">¶</a></h3>
-<p>TODO</p>
-</div>
-</div>
-<div class="section" id="id15">
-<h2><a class="toc-backref" href="#id45">5. 混合方法</a><a class="headerlink" href="#id15" title="永久链接至标题">¶</a></h2>
-<div class="section" id="recursive-feature-elimination">
-<h3><a class="toc-backref" href="#id46">5.1 递归特征消除 Recursive Feature Elimination</a><a class="headerlink" href="#recursive-feature-elimination" title="永久链接至标题">¶</a></h3>
-<blockquote>
-<div><ul class="simple">
-<li>根据某个 Embedded 中的方法（例如随机森林、LASSO、回归系数）对特征重要性排序</li>
-<li>将最不重要的一个特征剔除，利用剩余所有特征再训练</li>
-<li>计算当前模型的评估指标（ROC-AUC/MSE 或其他）</li>
-<li>如果评估指标的下降超过了设定的阈值，则说明去除的特征很重要应当保留，反之则可以放心剔除该排名最末的特征</li>
-<li>重复以上步骤，直到剔除的特征会严重影响模型的表现，或者所有特征都被剔除了（说明你的数据集完全是垃圾）</li>
-</ul>
-<p>这个方法看起来和之前 Wrapper 中的后向选择有点类似，最大的不同是在选择删除哪个特征时，后者会评估所有特征的剔除对模型表现的影响，而前者只会根据特征重要性排名删除最末的一个特征。</p>
-</div></blockquote>
-</div>
-<div class="section" id="recursive-feature-addition">
-<h3><a class="toc-backref" href="#id47">5.2 递归特征增加 Recursive Feature Addition</a><a class="headerlink" href="#recursive-feature-addition" title="永久链接至标题">¶</a></h3>
-<blockquote>
-<div><ul class="simple">
-<li>根据某个 Embedded 中的方法（例如随机森林、LASSO、回归系数）对特征重要性排序</li>
-<li>将最重要的一个特征加入模型进行训练，计算当前模型的评估指标（ROC-AUC/MSE 或其他）</li>
-<li>再次加入重要性最高的另一个特征，利用该特征以及之前模型已有的所有特征训练模型，计算模型评估指标</li>
-<li>如果评估指标的上升超过了设定的阈值，则说明增加的特征很有用应当保留，反之则剔除该特征</li>
-<li>重复以上步骤，直到所有的特征都被评估完</li>
-</ul>
-</div></blockquote>
-</div>
-<div class="section" id="feature-shuffling">
-<h3><a class="toc-backref" href="#id48">5.3 Feature Shuffling</a><a class="headerlink" href="#feature-shuffling" title="永久链接至标题">¶</a></h3>
-<p>随机打乱一个特征的值，观察在算法上的表现是否会有明显下降。如果某个特征很重要，有很强的预测能力，那么打乱其顺序会造成模型表现的大幅度下降。反过来，如果某个特征无关紧要，那么对它怎么乱动，都不会影响最终的结果。</p>
-<p>总结：
-美团机器学习 P33</p>
-</div>
-</div>
+  <div class="section" id="id1">
+<h1>特征选择<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h1>
+<p>本章节内容已迁移至 <a class="reference external" href="https://github.com/Yimeng-Zhang/feature-engineering-and-feature-selection">Repo</a></p>
 </div>
 
 
@@ -516,10 +181,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="特征学习.html" class="btn btn-neutral float-right" title="特征学习 Representation Learning" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="单变量微积分.html" class="btn btn-neutral float-right" title="单变量微积分 Calculus Part1" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="特征工程.html" class="btn btn-neutral" title="特征工程 Feature Engineering" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="特征工程.html" class="btn btn-neutral" title="特征工程" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
